@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-interface Props {
-  url: string;
-  method: string;
-  payload: any;
-}
-
-export const useAxios = ({ url, method, payload }: Props) => {
+export const useAxios = (url: string, method: string, payload?: any) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
