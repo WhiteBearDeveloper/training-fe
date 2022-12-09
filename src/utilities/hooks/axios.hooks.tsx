@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import axios, { Method } from "axios";
 
 export const useAxios = <T, B>(url: string, method: Method, payload?: T) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<B | null>(null);
   const [error, setError] = useState("");
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
+
+  // TODO: type ref block
   const controllerRef = useRef(new AbortController());
   const cancel = () => {
     controllerRef.current.abort();
@@ -22,7 +24,7 @@ export const useAxios = <T, B>(url: string, method: Method, payload?: T) => {
 
         console.log("response :>> ", response.data);
 
-        // setData(response.data);
+        setData(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           setError(error.message);

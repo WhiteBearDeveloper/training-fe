@@ -1,1 +1,1 @@
-export { useAxios } from "./axios.hook";
+export { useAxios } from "./axios.hooks";
