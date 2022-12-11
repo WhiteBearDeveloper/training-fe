@@ -12,17 +12,25 @@ export const useAxios = <T, B>(url: string, method: Method, payload?: T) => {
     controllerRef.current.abort();
   };
 
+  const $api = axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
+  });
+
+  $api.interceptors.request.use((config) => {
+    // let token = localStorage.getItem("token");
+    // (config.headers ??= {}).Authorization = `Bearer ${token}`;
+    return config;
+  });
+
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.request<B>({
+        const response = await $api.request<B>({
           data: payload,
           signal: controllerRef.current.signal,
           method,
           url,
         });
-
-        console.log("response :>> ", response.data);
 
         setData(response.data);
       } catch (error) {

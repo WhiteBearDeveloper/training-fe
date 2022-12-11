@@ -18,7 +18,8 @@
     "baseUrl": "src",
     "paths": {
       "@screens": ["screens"],
-      "@utilities/*": ["utilities/*"]
+      "@utilities/*": ["utilities/*"],
+      "@api/*": ["api/*"]
     }
   },
   "include": ["src"]
