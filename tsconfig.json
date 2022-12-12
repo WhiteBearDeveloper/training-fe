@@ -20,7 +20,8 @@
       "@screens": ["screens"],
       "@utilities/*": ["utilities/*"],
       "@api/*": ["api/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@store/*": ["store/*"]
     }
   },
   "include": ["src"]
