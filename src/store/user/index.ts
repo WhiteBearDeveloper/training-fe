@@ -1,7 +1,8 @@
 import { getAuthToken } from "@services/auth";
+import { StateClassCommon } from "@store/types";
 import { makeAutoObservable } from "mobx";
 
-export class User {
+export class User implements StateClassCommon {
   isAuth: boolean | null = null;
 
   constructor() {
@@ -18,6 +19,10 @@ export class User {
 
   deactivateAuthorizationStatus() {
     this.isAuth = false;
+  }
+
+  reset() {
+    this.isAuth = null;
   }
 }
 
