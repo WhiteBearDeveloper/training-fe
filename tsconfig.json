@@ -19,7 +19,8 @@
     "paths": {
       "@screens": ["screens"],
       "@utilities/*": ["utilities/*"],
-      "@api/*": ["api/*"]
+      "@api/*": ["api/*"],
+      "@services/*": ["services/*"]
     }
   },
   "include": ["src"]
