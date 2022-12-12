@@ -1,8 +1,12 @@
-import React from "react";
-import { AuthScreen } from "@screens";
+import { RoutesList } from "@router/";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-  return <AuthScreen />;
+  return (
+    <Router>
+      <RoutesList />
+    </Router>
+  );
 }
 
 export default App;

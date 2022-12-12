@@ -21,7 +21,8 @@
       "@utilities/*": ["utilities/*"],
       "@api/*": ["api/*"],
       "@services/*": ["services/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@router/*": ["router/*", "router"]
     }
   },
   "include": ["src"]

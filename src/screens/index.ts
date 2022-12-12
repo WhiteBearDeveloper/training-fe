@@ -1,1 +1,1 @@
-export { AuthScreen } from "./auth";
+export { MainScreen } from "./main";
