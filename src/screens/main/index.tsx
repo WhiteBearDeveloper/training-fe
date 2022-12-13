@@ -1,21 +1,13 @@
-import { getUsers } from "@api/endpoints/auth";
-import { useAxios } from "@utilities/hooks";
+import { Auth } from "@features/auth";
+import { useState } from "react";
 
 export const MainScreen = () => {
-  // const { data } = useAxios(getUsers(), "get");
+  const [isAuthModalOpen, setAuthModalStatus] = useState<boolean>(false);
+
   return (
     <>
-      <form>
-        <input type="text" name="email" placeholder="Введите емейл" />
-        <input type="text" name="password" placeholder="Введите пароль" />
-        <button type="submit">Войти</button>
-      </form>
-
-      <form>
-        <input type="text" name="email" placeholder="Введите емейл" />
-        <input type="text" name="password" placeholder="Введите пароль" />
-        <button type="submit">Зарегистрироваться</button>
-      </form>
+      <button onClick={() => setAuthModalStatus((prev) => !prev)}>Войти</button>
+      {isAuthModalOpen && <Auth />}
     </>
   );
 };
