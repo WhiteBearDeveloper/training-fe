@@ -23,7 +23,8 @@
       "@services/*": ["services/*"],
       "@store/*": ["store/*"],
       "@router/*": ["router/*", "router"],
-      "@features/*": ["features/*"]
+      "@features/*": ["features/*"],
+      "@types/*": ["types/*"]
     }
   },
   "include": ["src"]
