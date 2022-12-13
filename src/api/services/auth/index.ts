@@ -1,18 +1,42 @@
-import { getRegistrationEndpoint } from "@api/endpoints/auth";
+import { getLoginEndpoint, getRegistrationEndpoint } from "@api/endpoints/auth";
 import { commonApiService } from "../common";
+import { setAuthToken } from "@services/auth";
+import { $userStore } from "@store/user";
 
-interface SetAuthService {
-  payload: { email: string; password: string };
+interface SetAuthServicePayload {
+  email: string;
+  password: string;
 }
 
-export const setAuthService = async ({ payload }: SetAuthService) => {
+interface AuthAnswer {
+  id: number;
+  token: string;
+}
+interface SetAuthService {
+  payload: SetAuthServicePayload;
+  type: AuthTypes;
+}
+
+type AuthTypes = "authorization" | "login";
+
+const getAuthEndpoint = (type: AuthTypes) => {
+  switch (type) {
+    case "authorization":
+      return getRegistrationEndpoint();
+    case "login":
+      return getLoginEndpoint();
+  }
+};
+
+export const setAuthService = async ({ payload, type }: SetAuthService) => {
   try {
-    const response = await commonApiService({
-      url: getRegistrationEndpoint(),
+    const response = await commonApiService<AuthAnswer, SetAuthServicePayload>({
+      url: getAuthEndpoint(type),
       method: "POST",
       payload,
     });
-    return response.data;
+    setAuthToken(response.data.token);
+    $userStore.activateAuthorizationStatus();
   } catch (e) {
   } finally {
   }
