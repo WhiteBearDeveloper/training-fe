@@ -18,7 +18,6 @@ export const apiController = async <T = any, P = any>({
 
   return await $api.request<T>({
     data: payload,
-    // signal: controllerRef.current.signal,
     method,
     url,
   });
