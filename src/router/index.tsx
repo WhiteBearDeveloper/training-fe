@@ -1,16 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import { GlobalStore } from "@store/global";
-import { observer } from "mobx-react-lite";
-import { useContext } from "react";
 import { routes } from "./model";
 import { DefaultPublicTemplate } from "./templates";
 import { Template } from "./types";
 import { NotFoundScreen } from "@screens";
 
-export const RoutesList = observer(() => {
-  const { $userStore } = useContext(GlobalStore);
-  const isAuth = $userStore.isAuth;
-
+export const RoutesList = () => {
   const getTemplate = (
     Children: React.FC,
     template?: Template
@@ -37,4 +31,4 @@ export const RoutesList = observer(() => {
       <Route path="*" element={<NotFoundScreen />} />
     </Routes>
   );
-});
+};
