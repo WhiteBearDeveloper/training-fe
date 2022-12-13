@@ -2,6 +2,7 @@ import { getLoginEndpoint, getRegistrationEndpoint } from "@api/endpoints/auth";
 import { commonApiService } from "../common";
 import { setAuthToken } from "@services/auth";
 import { $userStore } from "@store/user";
+import { AuthTypes } from "./types";
 
 interface SetAuthServicePayload {
   email: string;
@@ -16,8 +17,6 @@ interface SetAuthService {
   payload: SetAuthServicePayload;
   type: AuthTypes;
 }
-
-type AuthTypes = "registration" | "login";
 
 const getAuthEndpoint = (type: AuthTypes) => {
   switch (type) {
