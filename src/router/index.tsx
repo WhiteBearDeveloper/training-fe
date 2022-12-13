@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { routes } from "./model";
 import { DefaultPublicTemplate } from "./templates";
 import { Template } from "./types";
+import { NotFoundScreen } from "@screens";
 
 export const RoutesList = observer(() => {
   const { $userStore } = useContext(GlobalStore);
@@ -33,6 +34,7 @@ export const RoutesList = observer(() => {
           element={getTemplate(item.component, item.template)}
         ></Route>
       ))}
+      <Route path="*" element={<NotFoundScreen />} />
     </Routes>
   );
 });
