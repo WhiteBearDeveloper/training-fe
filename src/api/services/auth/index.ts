@@ -17,11 +17,11 @@ interface SetAuthService {
   type: AuthTypes;
 }
 
-type AuthTypes = "authorization" | "login";
+type AuthTypes = "registration" | "login";
 
 const getAuthEndpoint = (type: AuthTypes) => {
   switch (type) {
-    case "authorization":
+    case "registration":
       return getRegistrationEndpoint();
     case "login":
       return getLoginEndpoint();
