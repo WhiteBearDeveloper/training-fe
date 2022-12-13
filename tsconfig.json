@@ -22,7 +22,8 @@
       "@api/*": ["api/*"],
       "@services/*": ["services/*"],
       "@store/*": ["store/*"],
-      "@router/*": ["router/*", "router"]
+      "@router/*": ["router/*", "router"],
+      "@features/*": ["features/*"]
     }
   },
   "include": ["src"]
