@@ -2,7 +2,11 @@ import { setAuthService } from "@api/services/auth";
 import { AuthTypes } from "@api/services/auth/types";
 import { useRef, useState } from "react";
 
-export const Auth = () => {
+interface Props {
+  closeModal: () => void;
+}
+
+export const Auth = ({ closeModal }: Props) => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [authType, setAuthType] = useState<AuthTypes>("login");
@@ -26,7 +30,7 @@ export const Auth = () => {
           password,
         },
         type: authType,
-      });
+      }).then((data) => closeModal());
   };
   return (
     <>

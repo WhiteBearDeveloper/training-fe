@@ -7,7 +7,7 @@ export const MainScreen = () => {
   return (
     <>
       <button onClick={() => setAuthModalStatus((prev) => !prev)}>Войти</button>
-      {isAuthModalOpen && <Auth />}
+      {isAuthModalOpen && <Auth closeModal={() => setAuthModalStatus(false)} />}
     </>
   );
 };
