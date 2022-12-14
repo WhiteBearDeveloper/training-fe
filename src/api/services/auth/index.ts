@@ -3,6 +3,7 @@ import { commonApiService } from "../common";
 import { setAuthToken } from "@services/auth";
 import { $userStore } from "@store/user";
 import { AuthTypes } from "./types";
+import { $notificationsStore } from "@store/notifications";
 
 interface SetAuthServicePayload {
   email: string;
@@ -36,6 +37,13 @@ export const setAuthService = async ({ payload, type }: SetAuthService) => {
     });
     setAuthToken(response.data.token);
     $userStore.activateAuthorizationStatus();
+    $notificationsStore.addNotification({
+      text:
+        type === "registration"
+          ? "Регистрация успешно завершена"
+          : "Вы успешно авторизованы",
+      type: "success",
+    });
   } catch (e) {
   } finally {
   }
