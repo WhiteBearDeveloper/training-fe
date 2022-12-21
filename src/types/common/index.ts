@@ -1,3 +1,3 @@
 export interface WithIntegerId {
-  id: number;
+  id: number
 }

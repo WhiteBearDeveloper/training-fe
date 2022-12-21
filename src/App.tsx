@@ -1,12 +1,12 @@
-import { RoutesList } from "@router/";
-import { BrowserRouter as Router } from "react-router-dom";
+import { RoutesList } from '@router/'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-function App() {
+function App () {
   return (
     <Router>
       <RoutesList />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

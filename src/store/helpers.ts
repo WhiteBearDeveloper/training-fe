@@ -1,5 +1,5 @@
-import { registeredStates } from "./model";
+import { registeredStates } from './model'
 
 export const resetRegisteredStates = () => {
-  registeredStates.forEach((item) => item.reset());
-};
+  registeredStates.forEach((item) => item.reset())
+}

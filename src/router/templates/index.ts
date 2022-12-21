@@ -1,1 +1,1 @@
-export { DefaultPublicTemplate } from "./default-public";
+export { DefaultPublicTemplate } from './default-public'

@@ -1,7 +1,7 @@
-import { Notifications } from "@ui";
+import { Notifications } from '@ui'
 
 interface Props {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
 export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
@@ -10,5 +10,5 @@ export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
       <Notifications />
       <>{children}</>
     </div>
-  );
-};
+  )
+}

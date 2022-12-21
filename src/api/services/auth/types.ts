@@ -1,1 +1,1 @@
-export type AuthTypes = "registration" | "login";
+export type AuthTypes = 'registration' | 'login'
