@@ -1,0 +1,110 @@
+@import "./variables";
+@import "./colors";
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint, $breakpoints: $media-sizes) {
+  @if index(map-keys($breakpoints), $breakpoint) {
+    $normalizedBreakpoint: map-get($breakpoints, $breakpoint);
+    @media (max-width: $normalizedBreakpoint) {
+      @content;
+    }
+  } @else {
+    @error "Значение #{$breakpoint} должно находиться в массиве!";
+  }
+}
+
+@mixin media-breakpoint-up($breakpoint, $breakpoints: $media-sizes) {
+  @if index(map-keys($breakpoints), $breakpoint) {
+    $normalizedBreakpoint: map-get($breakpoints, $breakpoint);
+    @media (min-width: $normalizedBreakpoint + 1) {
+      @content;
+    }
+  } @else {
+    @error "Значение #{$breakpoint} должно находиться в массиве!";
+  }
+}
+
+@mixin media-breakpoint-between(
+  $breakpointStart,
+  $breakpointEnd,
+  $breakpoints: $media-sizes
+) {
+  @if not(index(map-keys($breakpoints), $breakpointEnd)) {
+    @error "Значение #{$breakpointStart} должно находиться в массиве!";
+  } @else if not(index(map-keys($breakpoints), $breakpointEnd)) {
+    @error "Значение #{$breakpointEnd} должно находиться в массиве!";
+  } @else {
+    $normalizedBreakpointStart: map-get($breakpoints, $breakpointStart);
+    $normalizedBreakpointEnd: map-get($breakpoints, $breakpointEnd);
+
+    @if ($normalizedBreakpointStart >= $normalizedBreakpointEnd) {
+      @error "Стартовая точка ограничения должна быть меньше конечной!";
+    } @else {
+      @media (min-width: $normalizedBreakpointStart + 1) and (max-width: $normalizedBreakpointEnd) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin transition($transitions...) {
+  $transition_result: ();
+  @each $transition in $transitions {
+    $transition_result: append(
+      $transition_result,
+      $transition $transition-main,
+      comma
+    );
+  }
+  transition: $transition_result;
+}
+
+@mixin adaptiveDefaultGap($negative, $margins...) {
+  @if $negative {
+    $negative: "-";
+  } @else {
+    $negative: "";
+  }
+
+  @each $margin in $margins {
+    #{$margin}: #{$negative}#{$grid-gap-small};
+
+    @include media-breakpoint-up(xxxs) {
+      #{$margin}: #{$negative}$grid-gap;
+    }
+  }
+}
+
+@mixin trbl($arguments...) {
+  @if (length($arguments) == 1) {
+    top: $arguments;
+    right: $arguments;
+    bottom: $arguments;
+    left: $arguments;
+  }
+}
+
+@mixin flex($type: "center") {
+  display: flex;
+  align-items: center;
+
+  @if $type == "center" {
+    justify-content: center;
+  } @else if $type == "between" {
+    justify-content: space-between;
+  }
+}
