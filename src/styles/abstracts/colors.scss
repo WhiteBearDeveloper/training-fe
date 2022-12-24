@@ -2,14 +2,21 @@
 
 $color-white: #fff;
 $color-black: #000;
-
-// $color-primary: #49a7dd;
-// $color-secondary: #a8a8a8;
-
-// gradients
+$color-whitesmoke: #f0f1f5;
+$color-gray: #8f8f93;
+$color-darkslateblue: #4d3388;
+$color-hotpink: #e142ad;
+$color-thistle: #d9cae2;
 
 // project colors
-// $main-color: $color-steelblue;
-// $secondary-color: $color-darkorange;
+$main-color: $color-darkslateblue;
+$secondary-color: $color-thistle;
 // $placeholder-color: $color-graphitegray;
-// $text-color: #bbbbbb;
+$text-color: $color-gray;
+
+// gradients
+$purple-pink-gradient: linear-gradient(
+  135deg,
+  $main-color 60%,
+  $color-hotpink 100%
+);
