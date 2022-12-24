@@ -1,0 +1,19 @@
+/**
+ * Breakpoins
+ */
+
+$media-xl: 1440px;
+$media-lg: 1280px;
+$media-md: 992px;
+$media-sm: 767px;
+$media-xs: 576px;
+$media-xxs: 480px;
+
+$media-sizes: (
+  "xl": $media-xl,
+  "lg": $media-lg,
+  "md": $media-md,
+  "sm": $media-sm,
+  "xs": $media-xs,
+  "xxs": $media-xxs,
+);
