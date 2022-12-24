@@ -26,7 +26,8 @@
       "@features/*": ["features/*"],
       "@types/*": ["types/*"],
       "@ui": ["ui"],
-      "@styles": ["styles"]
+      "@styles": ["styles"],
+      "@templates": ["templates"]
     }
   },
   "include": ["src"]

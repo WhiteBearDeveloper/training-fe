@@ -1,8 +1,8 @@
-import { Route, Routes } from 'react-router-dom'
-import { routes } from './model'
-import { DefaultPublicTemplate } from './templates'
-import { Template } from './types'
-import { NotFoundScreen } from '@screens'
+import { Route, Routes } from "react-router-dom";
+import { routes } from "./model";
+import { DefaultPublicTemplate } from "@templates";
+import { Template } from "./types";
+import { NotFoundScreen } from "@screens";
 
 export const RoutesList = () => {
   const getTemplate = (
@@ -15,9 +15,9 @@ export const RoutesList = () => {
           <DefaultPublicTemplate>
             <Children />
           </DefaultPublicTemplate>
-        )
+        );
     }
-  }
+  };
 
   return (
     <Routes>
@@ -30,5 +30,5 @@ export const RoutesList = () => {
       ))}
       <Route path="*" element={<NotFoundScreen />} />
     </Routes>
-  )
-}
+  );
+};
