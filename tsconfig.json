@@ -25,7 +25,8 @@
       "@router/*": ["router/*", "router"],
       "@features/*": ["features/*"],
       "@types/*": ["types/*"],
-      "@ui": ["ui"]
+      "@ui": ["ui"],
+      "@styles/*": ["styles/*"]
     }
   },
   "include": ["src"]
