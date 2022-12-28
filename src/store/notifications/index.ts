@@ -1,53 +1,53 @@
-import { StateClassCommon } from '@store/types'
-import { makeAutoObservable, toJS } from 'mobx'
-import { Notification, NotificationStore, NotificationTimeouts } from './types'
+import { StateClassCommon } from "@store/types";
+import { makeAutoObservable } from "mobx";
+import { Notification, NotificationStore, NotificationTimeouts } from "./types";
 
 export class Notifications implements StateClassCommon {
-  notifications: NotificationStore[] | null = null
-  private notificationsTimeoutsList: NotificationTimeouts | null = null
-  private readonly notificationTimeoutLimit: number = 5000
+  notifications: NotificationStore[] | null = null;
+  private notificationsTimeoutsList: NotificationTimeouts | null = null;
+  private readonly notificationTimeoutLimit: number = 5000;
 
-  constructor () {
-    makeAutoObservable(this)
+  constructor() {
+    makeAutoObservable(this);
   }
 
-  addNotification ({ withTimeout = true, ...notification }: Notification) {
-    const id = this.notifications === null ? 1 : this.notifications.length + 1
-    const newNotification = { id, withTimeout, ...notification }
+  addNotification({ withTimeout = true, ...notification }: Notification): void {
+    const id = this.notifications === null ? 1 : this.notifications.length + 1;
+    const newNotification = { id, withTimeout, ...notification };
 
-    withTimeout && this.addNotificationTimer(id)
+    withTimeout && this.addNotificationTimer(id);
 
     this.notifications === null
       ? (this.notifications = [newNotification])
-      : this.notifications.push(newNotification)
+      : this.notifications.push(newNotification);
   }
 
-  closeNotification (id: number) {
+  closeNotification(id: number): void {
     if (this.notifications != null) {
-      this.notifications = this.notifications?.filter((item) => item.id !== id)
-      this.removeNotificationTimer(id)
+      this.notifications = this.notifications?.filter((item) => item.id !== id);
+      this.removeNotificationTimer(id);
     }
   }
 
-  addNotificationTimer (id: number) {
+  addNotificationTimer(id: number): void {
     const timer: NodeJS.Timeout = setTimeout(() => {
-      this.closeNotification(id)
-      this.removeNotificationTimer(id)
-    }, this.notificationTimeoutLimit)
+      this.closeNotification(id);
+      this.removeNotificationTimer(id);
+    }, this.notificationTimeoutLimit);
     this.notificationsTimeoutsList === null
       ? (this.notificationsTimeoutsList = { [id]: timer })
-      : (this.notificationsTimeoutsList[id] = timer)
+      : (this.notificationsTimeoutsList[id] = timer);
   }
 
-  removeNotificationTimer (id: number) {
-    if ((this.notificationsTimeoutsList?.[id]) != null) {
-      delete this.notificationsTimeoutsList?.[id]
+  removeNotificationTimer(id: number): void {
+    if (this.notificationsTimeoutsList?.[id] != null) {
+      delete this.notificationsTimeoutsList?.[id];
     }
   }
 
-  reset () {
-    this.notifications = null
+  reset(): void {
+    this.notifications = null;
   }
 }
 
-export const $notificationsStore = new Notifications()
+export const $notificationsStore = new Notifications();

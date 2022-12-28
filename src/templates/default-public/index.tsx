@@ -1,3 +1,4 @@
+import React from "react";
 import { Notifications } from "@ui";
 import "./default-public.scss";
 import styles from "./default-public.module.scss";

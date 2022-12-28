@@ -1,1 +1,1 @@
-export const prefix = 'auth'
+export const prefix = "auth";
