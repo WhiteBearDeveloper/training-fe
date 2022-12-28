@@ -24,7 +24,7 @@
       "@store/*": ["store/*"],
       "@router/*": ["router/*", "router"],
       "@features/*": ["features/*"],
-      "@types/*": ["types/*"],
+      "@appTypes/*": ["types/*"],
       "@ui": ["ui"],
       "@styles": ["styles"],
       "@templates": ["templates"]
