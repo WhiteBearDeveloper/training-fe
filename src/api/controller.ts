@@ -11,8 +11,10 @@ export const apiController = async <T = any, P = any>({
   });
 
   $api.interceptors.request.use((config) => {
-    // let token = localStorage.getItem("token");
-    // (config.headers ??= {}).Authorization = `Bearer ${token}`;
+    const token: string | null = localStorage.getItem("authToken");
+    if (token !== null) {
+      (config.headers ??= {}).Authorization = `Bearer ${token}`;
+    }
     return config;
   });
 

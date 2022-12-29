@@ -4,6 +4,7 @@ import { setAuthToken } from "@services/auth";
 import { $userStore } from "@store/user";
 import { AuthTypes } from "./types";
 import { $notificationsStore } from "@store/notifications";
+import { $profileStore } from "@store/profile";
 
 interface SetAuthServicePayload {
   email: string;
@@ -40,6 +41,7 @@ export const setAuthService = async ({
     });
     setAuthToken(response.data.token);
     $userStore.activateAuthorizationStatus();
+    await $profileStore.update();
     $notificationsStore.addNotification({
       text:
         type === "registration"

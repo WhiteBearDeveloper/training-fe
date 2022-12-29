@@ -8,9 +8,11 @@ export class User implements StateClassCommon {
   constructor() {
     makeAutoObservable(this);
 
-    getAuthToken()
-      ? this.activateAuthorizationStatus()
-      : this.deactivateAuthorizationStatus();
+    if (getAuthToken() !== null) {
+      this.activateAuthorizationStatus();
+    } else {
+      this.deactivateAuthorizationStatus();
+    }
   }
 
   activateAuthorizationStatus(): void {
