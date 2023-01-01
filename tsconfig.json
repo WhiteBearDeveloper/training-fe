@@ -28,7 +28,8 @@
       "@ui": ["ui"],
       "@styles": ["styles"],
       "@templates": ["templates"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"]
     }
   },
   "include": ["src"]
