@@ -11,3 +11,18 @@
   line-height: 1.2;
   background-color: $color-whitesmoke;
 }
+.topline {
+  @include adaptiveDefaultGap(false, padding-top, padding-bottom);
+  background: $color-white;
+  border-bottom: 1px solid $color-whitesmoke;
+  box-shadow: $box-shadow-main;
+
+  &Inner {
+    @include flex(between);
+  }
+  &Name {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
