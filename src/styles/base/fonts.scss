@@ -1,14 +1,13 @@
 @mixin fontFaceGenerator($family, $type, $weight: "normal", $italic: false) {
+  $basePath: "/assets/fonts";
+
   $path: "";
   $code: "";
 
-  //   @if $family == Nunito {
-  //     $path: "/static/fonts/NunitoSans/";
-  //     $code: "nunitosans";
-  //   } @else if $family == Montserrat {
-  //     $path: "/static/fonts/Montserrat/";
-  //     $code: "montserrat";
-  //   }
+  @if $family == Roboto {
+    $path: "#{$basePath}/Roboto/";
+    $code: "roboto";
+  }
 
   @font-face {
     font-family: $family;
@@ -28,4 +27,5 @@
   }
 }
 
-// @include fontFaceGenerator("Nunito", "regular", 400, true);
+@include fontFaceGenerator("Roboto", "regular", 400);
+@include fontFaceGenerator("Roboto", "medium", 500);
