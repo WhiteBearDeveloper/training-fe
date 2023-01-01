@@ -27,7 +27,7 @@
       "@appTypes/*": ["types/*"],
       "@ui": ["ui"],
       "@styles": ["styles"],
-      "@templates": ["templates"],
+      "@templates/*": ["templates/*", "templates"],
       "@utils/*": ["utils/*"],
       "@assets/*": ["assets/*"]
     }
