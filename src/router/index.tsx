@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { routes } from "./model";
-import { DefaultPublicTemplate } from "@templates";
+import { DefaultPublicTemplate } from "@templates/";
 import { Template } from "./types";
 import { NotFoundScreen } from "@screens";
 
