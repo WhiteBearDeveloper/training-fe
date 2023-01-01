@@ -83,7 +83,7 @@
   @each $margin in $margins {
     #{$margin}: #{$negative}#{$grid-gap-small};
 
-    @include media-breakpoint-up(xxxs) {
+    @include media-breakpoint-up(xxs) {
       #{$margin}: #{$negative}$grid-gap;
     }
   }

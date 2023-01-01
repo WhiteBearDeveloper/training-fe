@@ -1,0 +1,54 @@
+@import "@styles/abstracts";
+
+.root {
+  width: 100%;
+  @include adaptiveDefaultGap(false, padding-right, padding-left);
+
+  @include media-breakpoint-up(xxs) {
+    padding-left: $grid-gap-medium;
+    padding-right: $grid-gap-medium;
+  }
+  @include media-breakpoint-up(lg) {
+    padding-left: $grid-gap-large;
+    padding-right: $grid-gap-large;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-adaptive-max-width;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media-breakpoint-up(xl) {
+    max-width: $container-max-width;
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  @include adaptiveDefaultGap(true, margin-right, margin-left);
+}
+
+.item {
+  @include adaptiveDefaultGap(false, padding-right, padding-left);
+
+  @for $i from 0 through $grid-columns-count {
+    &-#{$i}x {
+      flex: 0 0 ($i / $grid-columns-count) * 100%;
+      max-width: ($i / $grid-columns-count) * 100%;
+    }
+  }
+
+  @each $name, $size in $media-sizes {
+    @media (max-width: $size) {
+      @for $i from 0 through $grid-columns-count {
+        &-#{$name}-#{$i}x {
+          flex: 0 0 ($i / $grid-columns-count) * 100%;
+          max-width: ($i / $grid-columns-count) * 100%;
+        }
+      }
+    }
+  }
+}
