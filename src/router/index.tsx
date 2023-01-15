@@ -2,33 +2,47 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { routes } from "./model";
 import { DefaultPublicTemplate } from "@templates/";
-import { Template } from "./types";
+import { RouteItem, Template } from "./types";
 import { NotFoundScreen } from "@screens";
 
-export const RoutesList = (): JSX.Element => {
-  const getTemplate = (
-    Children: React.FC,
-    template?: Template,
-  ): React.ReactNode => {
-    switch (template) {
-      default:
-        return (
-          <DefaultPublicTemplate>
-            <Children />
-          </DefaultPublicTemplate>
-        );
-    }
-  };
+const getTemplate = (
+  Children: React.FC,
+  template?: Template,
+): React.ReactNode => {
+  switch (template) {
+    default:
+      return (
+        <DefaultPublicTemplate>
+          <Children />
+        </DefaultPublicTemplate>
+      );
+  }
+};
 
+const createRoutesList = (routes: RouteItem[], path?: string): JSX.Element => {
+  return (
+    <>
+      {routes.map((item) => {
+        return (
+          <React.Fragment key={`${path ?? ""}${item.route}`}>
+            {item.children !== undefined &&
+              createRoutesList(item.children, `${item.route}`)}
+            <Route
+              key={item.route}
+              path={`${path ?? ""}${item.route}/`}
+              element={getTemplate(item.component, item.template)}
+            ></Route>
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+};
+
+export const RoutesList = (): JSX.Element => {
   return (
     <Routes>
-      {routes.map((item) => (
-        <Route
-          key={item.route}
-          path={`/${item.route}/`}
-          element={getTemplate(item.component, item.template)}
-        ></Route>
-      ))}
+      {createRoutesList(routes)}
       <Route path="*" element={<NotFoundScreen />} />
     </Routes>
   );

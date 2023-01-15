@@ -5,6 +5,7 @@ export interface RouteItem {
   component: React.FC;
   text?: string;
   template?: Template;
+  children?: RouteItem[];
 }
 
 export type Template = "defaultPublic";
