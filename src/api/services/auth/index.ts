@@ -34,7 +34,7 @@ export const setAuthService = async ({
   type,
 }: SetAuthService): Promise<void> => {
   try {
-    const response = await commonApiService<AuthAnswer, AuthProps>({
+    const response = await commonApiService<AuthAnswer, SetAuthServicePayload>({
       url: getAuthEndpoint(type),
       method: "POST",
       payload,
