@@ -1,4 +1,4 @@
-import { WithIntegerId } from "@appTypes/common";
+import { WithId } from "@whitebeardeveloper/training-logic/src/common/types";
 
 type NotificationType = "error" | "success";
 export interface Notification {
@@ -9,4 +9,4 @@ export interface Notification {
 
 export type NotificationTimeouts = Record<number, NodeJS.Timeout>;
 
-export interface NotificationStore extends WithIntegerId, Notification {}
+export interface NotificationStore extends WithId, Notification {}
