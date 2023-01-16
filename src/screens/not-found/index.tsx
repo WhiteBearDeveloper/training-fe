@@ -1,3 +1,5 @@
-export const NotFoundScreen = () => {
-  return <>404</>
-}
+import React from "react";
+
+export const NotFoundScreen = (): JSX.Element => {
+  return <>404</>;
+};

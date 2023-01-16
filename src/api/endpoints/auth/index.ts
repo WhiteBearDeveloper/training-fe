@@ -1,9 +1,9 @@
-import { prefix } from './helpers'
+import { prefix } from "./helpers";
 
-export const getRegistrationEndpoint = () => {
-  return `${prefix}/registration`
-}
+export const getRegistrationEndpoint = (): string => {
+  return `${prefix}/registration`;
+};
 
-export const getLoginEndpoint = () => {
-  return `${prefix}/login`
-}
+export const getLoginEndpoint = (): string => {
+  return `${prefix}/login`;
+};

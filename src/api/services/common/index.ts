@@ -1,13 +1,14 @@
-import { apiController } from '@api/controller'
-import { ApiServiceType } from '@api/types'
+import { apiController } from "@api/controller";
+import { ApiServiceType } from "@api/types";
+import { AxiosResponse } from "axios";
 
 export const commonApiService = async <T = any, P = any>(
-  props: ApiServiceType<P>
-) => {
+  props: ApiServiceType<P>,
+): Promise<AxiosResponse<T, any>> => {
   return await apiController<T, P>({
-    ...props
+    ...props,
   })
     .then()
     .catch()
-    .finally()
-}
+    .finally();
+};

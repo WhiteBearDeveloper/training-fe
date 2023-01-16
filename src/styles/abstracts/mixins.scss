@@ -83,7 +83,7 @@
   @each $margin in $margins {
     #{$margin}: #{$negative}#{$grid-gap-small};
 
-    @include media-breakpoint-up(xxxs) {
+    @include media-breakpoint-up(xxs) {
       #{$margin}: #{$negative}$grid-gap;
     }
   }
@@ -106,5 +106,40 @@
     justify-content: center;
   } @else if $type == "between" {
     justify-content: space-between;
+  }
+}
+
+@mixin fontFaceSelectorGenerator($family, $url, $weight, $style: normal) {
+  @font-face {
+    font-family: $family;
+    src: url("#{$url}.woff2") format("woff2"),
+      url("#{$url}.woff") format("woff");
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@mixin fontFaceGenerator($families) {
+  $basePath: "/assets/fonts";
+
+  @each $familyCode, $familyProps in $families {
+    $familyTypes: map-get($familyProps, "familyTypes");
+    @each $type, $typeProps in $familyTypes {
+      $family: map-get($familyProps, "family");
+      $familyPath: map-get($familyProps, "path");
+      $path: "#{$basePath}#{$familyPath}";
+      $weight: map-get($typeProps, "weight");
+      $url: "#{$path}#{$familyCode}-#{$type}";
+
+      $styles: map-get($typeProps, "styles");
+
+      @include fontFaceSelectorGenerator($family, $url, $weight);
+
+      @if ($styles) {
+        @each $style in $styles {
+          @include fontFaceSelectorGenerator($family, $url, $weight, $style);
+        }
+      }
+    }
   }
 }

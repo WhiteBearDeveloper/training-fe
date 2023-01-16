@@ -1,31 +1,20 @@
-@mixin fontFaceGenerator($family, $type, $weight: "normal", $italic: false) {
-  $path: "";
-  $code: "";
+@import "@styles/abstracts/mixins.scss";
 
-  //   @if $family == Nunito {
-  //     $path: "/static/fonts/NunitoSans/";
-  //     $code: "nunitosans";
-  //   } @else if $family == Montserrat {
-  //     $path: "/static/fonts/Montserrat/";
-  //     $code: "montserrat";
-  //   }
+$robotoTypes: (
+  "regular": (
+    "weight": 400,
+  ),
+  "medium": (
+    "weight": 500,
+  ),
+);
 
-  @font-face {
-    font-family: $family;
-    src: url("#{$path}#{$code}-#{$type}.woff2") format("woff2"),
-      url("#{$path}#{$code}-#{$type}.woff") format("woff");
-    font-weight: $weight;
-    font-style: normal;
-  }
-  @if ($italic) {
-    @font-face {
-      font-family: $family;
-      src: url("#{$path}#{$code}-#{$type}-italic.woff2") format("woff2"),
-        url("#{$path}#{$code}-#{$type}-italic.woff") format("woff");
-      font-weight: $weight;
-      font-style: italic;
-    }
-  }
-}
+$families: (
+  "roboto": (
+    "family": "Roboto",
+    "path": "/Roboto/",
+    "familyTypes": $robotoTypes,
+  ),
+);
 
-// @include fontFaceGenerator("Nunito", "regular", 400, true);
+@include fontFaceGenerator($families);

@@ -1,4 +1,4 @@
-import { WithIntegerId } from "@types/common";
+import { WithIntegerId } from "@appTypes/common";
 
 export enum SexEnum {
   "male" = 1,

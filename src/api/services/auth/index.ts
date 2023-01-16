@@ -4,18 +4,23 @@ import { setAuthToken } from "@services/auth";
 import { $userStore } from "@store/user";
 import { AuthTypes } from "./types";
 import { $notificationsStore } from "@store/notifications";
-import { AuthProps } from "@whitebeardeveloper/training-logic/src/auth/types";
+import { $profileStore } from "@store/profile";
+
+interface SetAuthServicePayload {
+  email: string;
+  password: string;
+}
 
 interface AuthAnswer {
   id: number;
   token: string;
 }
 interface SetAuthService {
-  payload: AuthProps;
+  payload: SetAuthServicePayload;
   type: AuthTypes;
 }
 
-const getAuthEndpoint = (type: AuthTypes) => {
+const getAuthEndpoint = (type: AuthTypes): string => {
   switch (type) {
     case "registration":
       return getRegistrationEndpoint();
@@ -24,7 +29,10 @@ const getAuthEndpoint = (type: AuthTypes) => {
   }
 };
 
-export const setAuthService = async ({ payload, type }: SetAuthService) => {
+export const setAuthService = async ({
+  payload,
+  type,
+}: SetAuthService): Promise<void> => {
   try {
     const response = await commonApiService<AuthAnswer, AuthProps>({
       url: getAuthEndpoint(type),
@@ -33,6 +41,7 @@ export const setAuthService = async ({ payload, type }: SetAuthService) => {
     });
     setAuthToken(response.data.token);
     $userStore.activateAuthorizationStatus();
+    await $profileStore.update();
     $notificationsStore.addNotification({
       text:
         type === "registration"
@@ -41,6 +50,6 @@ export const setAuthService = async ({ payload, type }: SetAuthService) => {
       type: "success",
     });
   } catch (e) {
-  } finally {
+    console.error("Ошибка авторизации");
   }
 };

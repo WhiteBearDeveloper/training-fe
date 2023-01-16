@@ -1,29 +1,37 @@
-import { getAuthToken } from '@services/auth'
-import { StateClassCommon } from '@store/types'
-import { makeAutoObservable } from 'mobx'
+import { getAuthToken } from "@services/auth";
+import { StateClassCommon } from "@store/types";
+import { makeAutoObservable } from "mobx";
+import { $profileStore } from "@store/profile";
 
 export class User implements StateClassCommon {
-  isAuth: boolean | null = null
+  isAuth: boolean | null = null;
 
-  constructor () {
-    makeAutoObservable(this)
+  constructor() {
+    makeAutoObservable(this);
 
-    getAuthToken()
-      ? this.activateAuthorizationStatus()
-      : this.deactivateAuthorizationStatus()
+    if (getAuthToken() !== null) {
+      this.activateAuthorizationStatus();
+      this.getProfile();
+    } else {
+      this.deactivateAuthorizationStatus();
+    }
   }
 
-  activateAuthorizationStatus () {
-    this.isAuth = true
+  private getProfile(): void {
+    $profileStore.update().catch((err) => console.error(err));
   }
 
-  deactivateAuthorizationStatus () {
-    this.isAuth = false
+  activateAuthorizationStatus(): void {
+    this.isAuth = true;
   }
 
-  reset () {
-    this.isAuth = null
+  deactivateAuthorizationStatus(): void {
+    this.isAuth = false;
+  }
+
+  reset(): void {
+    this.isAuth = null;
   }
 }
 
-export const $userStore = new User()
+export const $userStore = new User();

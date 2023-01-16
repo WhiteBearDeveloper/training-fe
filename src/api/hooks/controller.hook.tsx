@@ -1,35 +1,36 @@
-import { useEffect, useState } from 'react'
-import axios, { Method } from 'axios'
-import { apiController } from '@api/controller'
+import { useEffect, useState } from "react";
+import axios, { Method } from "axios";
+import { apiController } from "@api/controller";
+import { ControllerHookInterface } from "./types";
 
 export const useApiController = <T, B>(
   url: string,
   method: Method,
-  payload?: B
-) => {
-  const [data, setData] = useState<T | null>(null)
-  const [error, setError] = useState('')
-  const [loaded, setLoaded] = useState<boolean>(false)
+  payload?: B,
+): ControllerHookInterface<T> => {
+  const [data, setData] = useState<T | null>(null);
+  const [error, setError] = useState("");
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<void> => {
       try {
         const response = await apiController<T>({
           payload,
           method,
-          url
-        })
+          url,
+        });
 
-        setData(response.data)
+        setData(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          setError(error.message)
+          setError(error.message);
         }
       } finally {
-        setLoaded(true)
+        setLoaded(true);
       }
-    })()
-  }, [])
+    })();
+  }, []);
 
-  return { data, error, loaded }
-}
+  return { data, error, loaded };
+};
