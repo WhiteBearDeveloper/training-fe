@@ -1,8 +1,8 @@
 import { commonApiService } from "../common";
 import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
-import { CommonWithAndProfileId } from "@whitebeardeveloper/training-logic/src/common/types";
+import { CommonWithIdAndProfileId } from "@whitebeardeveloper/training-logic/src/common/types";
 
-interface AuthAnswer extends CommonWithAndProfileId {}
+interface AuthAnswer extends CommonWithIdAndProfileId {}
 
 interface AddTrainingCourse {
   name: string;
