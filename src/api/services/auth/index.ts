@@ -5,18 +5,14 @@ import { $userStore } from "@store/user";
 import { AuthTypes } from "./types";
 import { $notificationsStore } from "@store/notifications";
 import { $profileStore } from "@store/profile";
-
-interface SetAuthServicePayload {
-  email: string;
-  password: string;
-}
+import { AuthProps } from "@whitebeardeveloper/training-logic/src/auth/types";
 
 interface AuthAnswer {
   id: number;
   token: string;
 }
 interface SetAuthService {
-  payload: SetAuthServicePayload;
+  payload: AuthProps;
   type: AuthTypes;
 }
 
@@ -34,7 +30,7 @@ export const setAuthService = async ({
   type,
 }: SetAuthService): Promise<void> => {
   try {
-    const response = await commonApiService<AuthAnswer, SetAuthServicePayload>({
+    const response = await commonApiService<AuthAnswer, AuthProps>({
       url: getAuthEndpoint(type),
       method: "POST",
       payload,
