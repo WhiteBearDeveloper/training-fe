@@ -29,7 +29,7 @@ export const useApiController = <T, B>(
       } finally {
         setLoaded(true);
       }
-    })();
+    })().catch((error) => console.error(error));
   }, []);
 
   return { data, error, loaded };
