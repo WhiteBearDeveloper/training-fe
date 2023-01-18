@@ -21,7 +21,7 @@ export const Notifications = observer(() => {
           return (
             <React.Fragment key={`notification-${item.id}`}>
               <div className={className}>
-                {item.text}
+                {`${item.text}`}
                 <div
                   className={styles["item-close"]}
                   onClick={() => $notificationsStore.closeNotification(item.id)}
