@@ -1,4 +1,4 @@
-import { ProfileAnswer } from "@whitebeardeveloper/training-logic/src/profile/types";
+import { ProfileModel } from "@whitebeardeveloper/training-logic/src/profile/types";
 import { commonApiService } from "../common";
 import { getMyProfileEndpoint } from "@api/endpoints/profile";
 
@@ -6,9 +6,9 @@ type Props = number | undefined;
 
 export const getProfileService = async (
   id?: Props,
-): Promise<ProfileAnswer | undefined> => {
+): Promise<ProfileModel | undefined> => {
   try {
-    const response = await commonApiService<ProfileAnswer, Props>({
+    const response = await commonApiService<ProfileModel, Props>({
       url: getMyProfileEndpoint(),
       method: "GET",
     });
