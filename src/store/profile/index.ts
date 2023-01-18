@@ -1,17 +1,17 @@
 import { StateClassCommon } from "@store/types";
 import { makeAutoObservable } from "mobx";
-import { ProfileInterface } from "@whitebeardeveloper/training-logic/src/profile/types";
+import { ProfileAnswer } from "@whitebeardeveloper/training-logic/src/profile/types";
 import { getProfileService } from "@api/services/profile";
 
 export class Profile implements StateClassCommon {
-  profile: ProfileInterface | null = null;
+  profile: ProfileAnswer | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   async update(id?: number): Promise<any> {
-    const response: ProfileInterface | undefined = await getProfileService(id);
+    const response: ProfileAnswer | undefined = await getProfileService(id);
     if (response !== undefined) {
       this.profile = response;
     }
