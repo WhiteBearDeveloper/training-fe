@@ -5,12 +5,10 @@ import { $userStore } from "@store/user";
 import { AuthTypes } from "./types";
 import { $notificationsStore } from "@store/notifications";
 import { $profileStore } from "@store/profile";
-import { AuthProps } from "@whitebeardeveloper/training-logic/src/auth/types";
-
-interface AuthAnswer {
-  id: number;
-  token: string;
-}
+import {
+  AuthAnswer,
+  AuthProps,
+} from "@whitebeardeveloper/training-logic/src/auth/types";
 interface SetAuthService {
   payload: AuthProps;
   type: AuthTypes;
