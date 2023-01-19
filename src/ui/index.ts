@@ -1,1 +1,3 @@
 export { Notifications } from "./notifications";
+export { Modal } from "./modal";
+export { CloseIcon } from "./close-icon";

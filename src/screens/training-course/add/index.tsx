@@ -28,7 +28,7 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
           type="text"
           name="name"
           ref={nameRef}
-          placeholder="Введите название тренировочного курса"
+          placeholder="Введите название курса"
         />
         <button type="submit">Сохранить</button>
       </form>

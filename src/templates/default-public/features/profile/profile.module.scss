@@ -1,0 +1,10 @@
+@import "@styles/abstracts";
+
+.enter {
+  cursor: pointer;
+  @include transition(color);
+
+  &:hover {
+    color: $color-hotpink;
+  }
+}
