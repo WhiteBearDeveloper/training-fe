@@ -1,1 +1,8 @@
 @import "@styles/base/";
+@import "@styles/abstracts";
+
+html {
+  font-family: $font-main;
+  font-size: 14px;
+  line-height: 1;
+}
