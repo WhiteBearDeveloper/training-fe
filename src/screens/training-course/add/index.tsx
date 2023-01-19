@@ -1,6 +1,7 @@
 import { addTrainingCourseService } from "@api/services/training-courses";
 import React, { useRef, useState } from "react";
 import blockStyles from "@styles/modules/abstracts/block.module.scss";
+import titleStyles from "@styles/modules/abstracts/title.module.scss";
 
 export const TrainingCourseAddScreen = (): JSX.Element => {
   const [name, setName] = useState<string | null>(null);
@@ -21,6 +22,7 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
   };
   return (
     <div className={blockStyles.block}>
+      <h1 className={titleStyles.lg}>Создать тренировочный курс</h1>
       <form onSubmit={onSubmitHandler}>
         <input
           type="text"
