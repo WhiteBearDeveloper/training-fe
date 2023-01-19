@@ -1,0 +1,35 @@
+@import "@styles/abstracts";
+
+@mixin pseudo {
+  content: "";
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.wrapper {
+  position: absolute;
+  z-index: 10;
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  @include transition(color);
+
+  &:hover {
+    color: $color-hotpink;
+  }
+
+  &:before {
+    left: 0;
+    transform: rotate(45deg);
+    @include pseudo();
+  }
+  &:after {
+    right: 0;
+    transform: rotate(-45deg);
+    @include pseudo();
+  }
+}
