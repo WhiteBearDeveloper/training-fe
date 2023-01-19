@@ -1,23 +1,39 @@
-.xl {
-  font-size: 48px;
-  margin-bottom: 30px;
+@import "@styles/abstracts";
+
+@mixin commonTitlesStyles {
+  font-weight: 500;
+}
+
+@mixin calcSizes($fontSize) {
+  font-size: #{$fontSize}px;
+  margin-bottom: #{round($fontSize / 1.57)}px;
+}
+
+@mixin calcStyles($baseValue) {
+  @include calcSizes(round($baseValue/1.6));
   @include commonTitlesStyles();
+
+  @include media-breakpoint-up(xs) {
+    @include calcSizes(round($baseValue/1.09));
+  }
+  @include media-breakpoint-up(lg) {
+    @include calcSizes($baseValue);
+  }
+}
+
+.xl {
+  $baseFontSizeValue: 48;
+  @include calcStyles($baseFontSizeValue);
 }
 .lg {
-  font-size: 32px;
-  margin-bottom: 20px;
-  @include commonTitlesStyles();
+  $baseFontSizeValue: 32;
+  @include calcStyles($baseFontSizeValue);
 }
 .md {
-  font-size: 21px;
-  margin-bottom: 13px;
-  @include commonTitlesStyles();
+  $baseFontSizeValue: 21;
+  @include calcStyles($baseFontSizeValue);
 }
 .sm {
 }
 .xs {
-}
-
-@mixin commonTitlesStyles {
-  font-weight: bold;
 }
