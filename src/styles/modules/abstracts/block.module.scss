@@ -4,5 +4,12 @@
   background-color: $color-white;
   box-shadow: $box-shadow-main;
   border-radius: $border-radius-main;
-  @include adaptiveDefaultGap(false, "padding");
+  padding: $grid-gap-small;
+
+  @include media-breakpoint-up(xxs) {
+    padding: $grid-gap;
+  }
+  @include media-breakpoint-up(lg) {
+    padding: 20px;
+  }
 }
