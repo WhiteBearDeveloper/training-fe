@@ -1,0 +1,8 @@
+@import "@styles/abstracts";
+
+.block {
+  background-color: $color-white;
+  box-shadow: $box-shadow-main;
+  border-radius: $border-radius-main;
+  @include adaptiveDefaultGap(false, "padding");
+}
