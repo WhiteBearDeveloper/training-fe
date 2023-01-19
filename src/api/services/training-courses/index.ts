@@ -1,5 +1,6 @@
 import { commonApiService } from "../common";
 import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
+import { $notificationsStore } from "@store/notifications";
 import { CommonWithProfileId } from "@whitebeardeveloper/training-logic/src/common/types";
 
 interface AuthAnswer extends CommonWithProfileId {}
@@ -19,6 +20,10 @@ export const addTrainingCourseService = async ({
       url: getTrainingCoursesEndpoint(),
       method: "POST",
       payload,
+    });
+    $notificationsStore.addNotification({
+      text: "Тренировочный курс успешно создан!",
+      type: "success",
     });
     return response.data;
   } catch (e) {
