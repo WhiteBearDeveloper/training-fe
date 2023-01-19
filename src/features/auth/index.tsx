@@ -1,6 +1,7 @@
 import { setAuthService } from "@api/services/auth";
 import { AuthTypes } from "@api/services/auth/types";
 import React, { useRef, useState } from "react";
+import titleStyles from "@styles/modules/abstracts/title.module.scss";
 
 interface Props {
   closeModal: () => void;
@@ -36,7 +37,9 @@ export const Auth = ({ closeModal }: Props): JSX.Element => {
   };
   return (
     <>
-      <h1>{authType === "login" ? "Войти" : "Регистрация"}</h1>
+      <h1 className={titleStyles.lg}>
+        {authType === "login" ? "Войти" : "Регистрация"}
+      </h1>
       <form onSubmit={onSubmitHandler}>
         <input type="text" name="email" ref={emailRef} />
         <input type="text" name="password" ref={passwordRef} />
