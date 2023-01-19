@@ -2,6 +2,7 @@
 
 @mixin commonTitlesStyles {
   font-weight: 500;
+  @include transition(font-size, margin-bottom);
 }
 
 @mixin calcSizes($fontSize) {
