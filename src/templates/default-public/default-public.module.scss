@@ -11,11 +11,12 @@
   line-height: 1.2;
   background-color: $color-whitesmoke;
 }
-.topline {
+.header {
   @include adaptiveDefaultGap(false, padding-top, padding-bottom);
   background: $color-white;
   border-bottom: 1px solid $color-whitesmoke;
   box-shadow: $box-shadow-main;
+  @include adaptiveDefaultGap(false, "margin-bottom");
 
   &Inner {
     @include flex(between);

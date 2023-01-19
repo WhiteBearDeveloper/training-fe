@@ -14,17 +14,19 @@ export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
   return (
     <div className={styles.wrapper}>
       <Notifications />
-      <div className={classNames(styles.topline, grid.root)}>
-        <div className={classNames(grid.container, styles.toplineInner)}>
-          <div className={styles.toplineName}>Workout</div>
-          <div className={styles.toplineManagment}>
+      <header className={classNames(styles.header, grid.root)}>
+        <div className={classNames(grid.container, styles.headerInner)}>
+          <div className={styles.headerName}>Workout</div>
+          <div className={styles.headerManagment}>
             <Profile />
           </div>
         </div>
-      </div>
-      <div className={grid.container}>
-        <>{children}</>
-      </div>
+      </header>
+      <main className={grid.root}>
+        <div className={grid.container}>
+          <>{children}</>
+        </div>
+      </main>
     </div>
   );
 };
