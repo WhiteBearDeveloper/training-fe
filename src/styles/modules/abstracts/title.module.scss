@@ -1,0 +1,23 @@
+.xl {
+  font-size: 48px;
+  margin-bottom: 30px;
+  @include commonTitlesStyles();
+}
+.lg {
+  font-size: 32px;
+  margin-bottom: 20px;
+  @include commonTitlesStyles();
+}
+.md {
+  font-size: 21px;
+  margin-bottom: 13px;
+  @include commonTitlesStyles();
+}
+.sm {
+}
+.xs {
+}
+
+@mixin commonTitlesStyles {
+  font-weight: bold;
+}
