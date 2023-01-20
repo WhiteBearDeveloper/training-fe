@@ -1,0 +1,14 @@
+@import "@styles/abstracts";
+
+.footer {
+  @include flex(between);
+  align-items: center;
+}
+.link {
+  cursor: pointer;
+  @include transition(color);
+
+  &:hover {
+    color: $color-hotpink;
+  }
+}
