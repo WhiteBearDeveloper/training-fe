@@ -1,0 +1,11 @@
+@import "@styles/abstracts";
+
+.row {
+  &:not(:last-child) {
+    margin-bottom: 17px;
+
+    @include media-breakpoint-up(xs) {
+      margin-bottom: 18px;
+    }
+  }
+}

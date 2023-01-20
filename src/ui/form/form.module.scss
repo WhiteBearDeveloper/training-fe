@@ -1,0 +1,65 @@
+@import "@styles/abstracts";
+
+$paddingTop: 7px;
+$paddingTopMobile: 5px;
+
+@mixin itemPseudo {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  z-index: 10;
+  height: 1px;
+}
+
+.item {
+  position: relative;
+
+  &:before {
+    @include itemPseudo();
+    width: 100%;
+    background-color: $color-whitesmoke;
+  }
+
+  &:after {
+    @include itemPseudo();
+    width: 0;
+    background-color: $main-color;
+    @include transition(width);
+  }
+
+  &:focus-within {
+    & .placeholder {
+      top: 2px;
+      font-size: 12px;
+      transform: translateY(-100%);
+    }
+    &:after {
+      width: 100%;
+    }
+  }
+}
+.placeholder {
+  position: absolute;
+  left: 0;
+  top: $paddingTopMobile + 2;
+  pointer-events: none;
+  transform: translateY(0);
+  color: $color-gray;
+  @include transition(top, transform, font-size);
+
+  @include media-breakpoint-up(xs) {
+    top: $paddingTop + 2;
+  }
+}
+.text {
+  padding: $paddingTopMobile 0;
+
+  @include placeholder() {
+    visibility: hidden;
+  }
+
+  @include media-breakpoint-up(xs) {
+    padding: $paddingTop 0;
+  }
+}
