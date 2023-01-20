@@ -3,7 +3,9 @@ import { AuthTypes } from "@api/services/auth/types";
 import React, { useRef, useState } from "react";
 import titleStyles from "@styles/modules/abstracts/title.module.scss";
 import formStyles from "@styles/modules/abstracts/form.module.scss";
-import { FormWrapper, InputText } from "@ui";
+import styles from "./auth.module.scss";
+import { Button, FormWrapper, InputText } from "@ui";
+import classNames from "classnames";
 
 interface Props {
   closeModal: () => void;
@@ -59,16 +61,23 @@ export const Auth = ({ closeModal }: Props): JSX.Element => {
             placeholder="Введите пароль"
           />
         </div>
-        <button type="submit">Отправить</button>
+        <div className={classNames(formStyles.row, styles.footer)}>
+          <Button type="submit" text="Отправить" />
+          {authType === "login" && (
+            <span
+              className={styles.link}
+              onClick={() => setAuthType("registration")}
+            >
+              Зарегистрироваться
+            </span>
+          )}
+          {authType === "registration" && (
+            <span className={styles.link} onClick={() => setAuthType("login")}>
+              Войти
+            </span>
+          )}
+        </div>
       </FormWrapper>
-      {authType === "login" && (
-        <span onClick={() => setAuthType("registration")}>
-          Зарегистрироваться
-        </span>
-      )}
-      {authType === "registration" && (
-        <span onClick={() => setAuthType("login")}>Войти</span>
-      )}
     </>
   );
 };
