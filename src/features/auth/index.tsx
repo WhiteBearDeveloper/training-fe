@@ -2,7 +2,8 @@ import { setAuthService } from "@api/services/auth";
 import { AuthTypes } from "@api/services/auth/types";
 import React, { useRef, useState } from "react";
 import titleStyles from "@styles/modules/abstracts/title.module.scss";
-import { FormWrapper } from "@ui";
+import formStyles from "@styles/modules/abstracts/form.module.scss";
+import { FormWrapper, InputText } from "@ui";
 
 interface Props {
   closeModal: () => void;
@@ -42,8 +43,22 @@ export const Auth = ({ closeModal }: Props): JSX.Element => {
         {authType === "login" ? "Войти" : "Регистрация"}
       </h1>
       <FormWrapper onSubmit={onSubmitHandler}>
-        <input type="text" name="email" ref={emailRef} />
-        <input type="text" name="password" ref={passwordRef} />
+        <div className={formStyles.row}>
+          <InputText
+            type="text"
+            name="email"
+            ref={emailRef}
+            placeholder="Введите email"
+          />
+        </div>
+        <div className={formStyles.row}>
+          <InputText
+            type="text"
+            name="password"
+            ref={passwordRef}
+            placeholder="Введите пароль"
+          />
+        </div>
         <button type="submit">Отправить</button>
       </FormWrapper>
       {authType === "login" && (
