@@ -1,0 +1,40 @@
+@import "@styles/abstracts";
+
+.block {
+  $padding: 19px;
+  $paddingMobile: 12px;
+
+  position: relative;
+  display: inline-flex;
+  border-radius: 1.5em;
+  font-weight: 500;
+
+  padding: $paddingMobile;
+  @include transition(padding);
+
+  &Main {
+    background-image: $purple-pink-gradient;
+    background-size: 120%;
+    color: $color-white;
+    @include transition(background-position);
+
+    &:hover {
+      background-position: 100%;
+    }
+  }
+
+  @include media-breakpoint-up(xs) {
+    padding-right: $padding;
+    padding-left: $padding;
+  }
+}
+.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  cursor: pointer;
+  opacity: 0;
+}
