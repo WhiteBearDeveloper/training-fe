@@ -2,6 +2,7 @@ import { setAuthService } from "@api/services/auth";
 import { AuthTypes } from "@api/services/auth/types";
 import React, { useRef, useState } from "react";
 import titleStyles from "@styles/modules/abstracts/title.module.scss";
+import { FormWrapper } from "@ui";
 
 interface Props {
   closeModal: () => void;
@@ -40,11 +41,11 @@ export const Auth = ({ closeModal }: Props): JSX.Element => {
       <h1 className={titleStyles.lg}>
         {authType === "login" ? "Войти" : "Регистрация"}
       </h1>
-      <form onSubmit={onSubmitHandler}>
+      <FormWrapper onSubmit={onSubmitHandler}>
         <input type="text" name="email" ref={emailRef} />
         <input type="text" name="password" ref={passwordRef} />
         <button type="submit">Отправить</button>
-      </form>
+      </FormWrapper>
       {authType === "login" && (
         <span onClick={() => setAuthType("registration")}>
           Зарегистрироваться
