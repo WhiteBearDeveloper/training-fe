@@ -5,10 +5,5 @@
   align-items: center;
 }
 .link {
-  cursor: pointer;
-  @include transition(color);
-
-  &:hover {
-    color: $color-hotpink;
-  }
+  user-select: none;
 }

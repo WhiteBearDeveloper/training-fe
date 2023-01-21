@@ -3,6 +3,7 @@ import { AuthTypes } from "@api/services/auth/types";
 import React, { useRef, useState } from "react";
 import titleStyles from "@styles/modules/abstracts/title.module.scss";
 import formStyles from "@styles/modules/abstracts/form.module.scss";
+import linkStyles from "@styles/modules/abstracts/link.module.scss";
 import styles from "./auth.module.scss";
 import { Button, FormWrapper, InputText } from "@ui";
 import classNames from "classnames";
@@ -64,20 +65,38 @@ export const Auth = ({ closeModal }: Props): JSX.Element => {
         <div className={classNames(formStyles.row, styles.footer)}>
           <Button type="submit" text="Отправить" />
           {authType === "login" && (
-            <span
-              className={styles.link}
+            <Link
+              type="registration"
+              title="Зарегистрироваться"
               onClick={() => setAuthType("registration")}
-            >
-              Зарегистрироваться
-            </span>
+            />
           )}
           {authType === "registration" && (
-            <span className={styles.link} onClick={() => setAuthType("login")}>
-              Войти
-            </span>
+            <Link
+              type="login"
+              title="Войти"
+              onClick={() => setAuthType("login")}
+            />
           )}
         </div>
       </FormWrapper>
     </>
+  );
+};
+
+interface LinkProps {
+  type: AuthTypes;
+  title: string;
+  onClick: (type: AuthTypes) => void;
+}
+
+const Link = ({ type, title, onClick }: LinkProps): JSX.Element => {
+  return (
+    <span
+      className={classNames(linkStyles.linkBase, styles.link)}
+      onClick={() => onClick(type)}
+    >
+      {title}
+    </span>
   );
 };
