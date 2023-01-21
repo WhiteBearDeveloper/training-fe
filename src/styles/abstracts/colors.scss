@@ -10,12 +10,12 @@ $color-thistle: #d9cae2;
 
 // project colors
 $main-color: $color-darkslateblue;
-$secondary-color: $color-thistle;
+$secondary-color: $color-hotpink;
 $text-color: $color-gray;
 
 // gradients
 $purple-pink-gradient: linear-gradient(
   45deg,
   $main-color 30%,
-  $color-hotpink 100%
+  $secondary-color 100%
 );
