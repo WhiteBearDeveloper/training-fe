@@ -6,12 +6,14 @@ import classNames from "classnames";
 import { CloseIcon } from "@ui";
 
 interface Props extends ReactModal.Props {
+  className?: string;
   onClose: () => void;
 }
 
 export const Modal: React.FC<Props> = ({
   children,
   onClose,
+  className,
   ...props
 }): JSX.Element => {
   const [overlayClassName, setOverlayCLassName] = useState<string>(
@@ -33,14 +35,13 @@ export const Modal: React.FC<Props> = ({
     setOverlayCLassName(styles.overlay);
     overlayRef?.addEventListener("transitionend", onClose, false);
   };
-
   return (
     <ReactModal
       ariaHideApp={false}
       overlayClassName={overlayClassName}
       onAfterOpen={afterOpen}
       onAfterClose={afterClose}
-      className={classNames(styles.empty, styles.wrapper)}
+      className={classNames(styles.empty, styles.wrapper, className)}
       portalClassName={styles.empty}
       onRequestClose={onCloseHandler}
       overlayRef={(node) => setOverlayRef(node)}

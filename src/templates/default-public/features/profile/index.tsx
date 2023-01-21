@@ -3,6 +3,7 @@ import { Modal } from "@ui";
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import linkStyles from "@styles/modules/abstracts/link.module.scss";
+import styles from "./profile.module.scss";
 
 export const Profile = observer((): JSX.Element => {
   const [isAuthModalOpen, setAuthModalStatus] = useState<boolean>(false);
@@ -20,7 +21,11 @@ export const Profile = observer((): JSX.Element => {
         Войти
       </button>
       {isAuthModalOpen && (
-        <Modal isOpen={isAuthModalOpen} onClose={onCloseHandler}>
+        <Modal
+          isOpen={isAuthModalOpen}
+          onClose={onCloseHandler}
+          className={styles.modal}
+        >
           <Auth closeModal={() => setAuthModalStatus(false)} />
         </Modal>
       )}
