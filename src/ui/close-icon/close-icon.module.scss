@@ -14,12 +14,6 @@
   z-index: 10;
   width: 1em;
   height: 1em;
-  cursor: pointer;
-  @include transition(color);
-
-  &:hover {
-    color: $color-hotpink;
-  }
 
   &:before {
     left: 0;
