@@ -2,7 +2,7 @@ import { Auth } from "@features/auth";
 import { Modal } from "@ui";
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import styles from "./profile.module.scss";
+import linkStyles from "@styles/modules/abstracts/link.module.scss";
 
 export const Profile = observer((): JSX.Element => {
   const [isAuthModalOpen, setAuthModalStatus] = useState<boolean>(false);
@@ -14,7 +14,7 @@ export const Profile = observer((): JSX.Element => {
   return (
     <>
       <button
-        className={styles.enter}
+        className={linkStyles.linkBase}
         onClick={() => setAuthModalStatus((prev) => !prev)}
       >
         Войти
