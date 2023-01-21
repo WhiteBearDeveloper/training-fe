@@ -1,0 +1,14 @@
+@import "@styles/abstracts";
+
+@mixin common() {
+  cursor: pointer;
+  @include transition(color);
+}
+
+.linkBase {
+  @include common();
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
