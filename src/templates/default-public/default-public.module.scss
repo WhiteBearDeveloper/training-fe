@@ -13,7 +13,6 @@
   background: $color-white;
   border-bottom: 1px solid $color-whitesmoke;
   box-shadow: $box-shadow-main;
-  @include adaptiveDefaultGap(false, "margin-bottom");
 
   &Inner {
     @include flex(between);
@@ -24,4 +23,7 @@
     font-weight: 500;
     color: $main-color;
   }
+}
+.main {
+  @include adaptiveDefaultGap(false, "padding-top", "padding-bottom");
 }
