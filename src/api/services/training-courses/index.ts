@@ -42,6 +42,6 @@ export const getTrainingCourseService = async (
     });
     return response.data;
   } catch (e) {
-    console.error("Ошибка получения профиля");
+    console.error("Ошибка получения списка тренировок");
   }
 };
