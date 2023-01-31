@@ -3,10 +3,10 @@ import axios, { Method } from "axios";
 import { apiController } from "@api/controller";
 import { ControllerHookInterface } from "./types";
 
-export const useApiController = <T, B>(
+export const useApiController = <T, B = {}>(
   url: string,
-  method: Method,
   payload?: B,
+  method: Method = "GET",
 ): ControllerHookInterface<T> => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState("");
