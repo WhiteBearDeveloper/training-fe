@@ -1,16 +1,16 @@
 import React from "react";
 import blockStyles from "@styles/modules/abstracts/block.module.scss";
 import gridStyles from "@styles/modules/abstracts/grid.module.scss";
-import { CommonWithProfileId } from "@whitebeardeveloper/training-logic/src/common/types";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/src/training-course/types";
 import { checkNullish } from "@utils/helpers/checks.helper";
 import classNames from "classnames";
 import { useGetTrainingCoursesListHook } from "./list.hook";
 
 const Component = (): JSX.Element => {
-  const data: CommonWithProfileId[] | null = useGetTrainingCoursesListHook();
+  const data: TrainingCourseModel[] | null = useGetTrainingCoursesListHook();
   return (
     <div className={blockStyles.block}>
-      {checkNullish<CommonWithProfileId[] | null>(data) && (
+      {checkNullish<TrainingCourseModel[] | null>(data) && (
         <div className={gridStyles.list}>
           {data?.map((item) => (
             <div

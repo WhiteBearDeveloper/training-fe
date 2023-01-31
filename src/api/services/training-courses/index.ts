@@ -1,22 +1,23 @@
 import { commonApiService } from "../common";
 import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
 import { $notificationsStore } from "@store/notifications";
-import { CommonWithProfileId } from "@whitebeardeveloper/training-logic/src/common/types";
+import {
+  TrainingCourseModel,
+  TrainingCourseProps,
+} from "@whitebeardeveloper/training-logic/src/training-course/types";
 
-interface TrainingCourse extends CommonWithProfileId {}
-
-interface AddTrainingCourse {
-  name: string;
-}
 interface Props {
-  payload: AddTrainingCourse;
+  payload: TrainingCourseProps;
 }
 
 export const addTrainingCourseService = async ({
   payload,
-}: Props): Promise<TrainingCourse | undefined> => {
+}: Props): Promise<TrainingCourseModel | undefined> => {
   try {
-    const response = await commonApiService<TrainingCourse, AddTrainingCourse>({
+    const response = await commonApiService<
+      TrainingCourseModel,
+      TrainingCourseProps
+    >({
       url: getTrainingCoursesEndpoint(),
       method: "POST",
       payload,
@@ -33,9 +34,9 @@ export const addTrainingCourseService = async ({
 
 export const getTrainingCourseService = async (
   id?: Props,
-): Promise<TrainingCourse[] | undefined> => {
+): Promise<TrainingCourseModel[] | undefined> => {
   try {
-    const response = await commonApiService<TrainingCourse[], Props>({
+    const response = await commonApiService<TrainingCourseModel[], Props>({
       url: getTrainingCoursesEndpoint(),
       method: "GET",
     });
