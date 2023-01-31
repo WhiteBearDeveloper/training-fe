@@ -22,7 +22,7 @@ export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
           </div>
         </div>
       </header>
-      <main className={grid.root}>
+      <main className={classNames(styles.main, grid.root)}>
         <div className={grid.container}>
           <>{children}</>
         </div>
