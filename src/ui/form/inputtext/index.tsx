@@ -14,9 +14,7 @@ const Component = (
   return (
     <div className={itemClass}>
       <div className={formStyles.placeholder}>
-        {props.placeholder !== null &&
-          props.placeholder !== undefined &&
-          `${props.placeholder}`}
+        {props.placeholder && `${props.placeholder}`}
       </div>
       <input {...props} className={inputClass} ref={ref} />
     </div>

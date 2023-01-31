@@ -25,8 +25,7 @@ const createRoutesList = (routes: RouteItem[], path?: string): JSX.Element => {
       {routes.map((item) => {
         return (
           <React.Fragment key={`${path ?? ""}${item.route}`}>
-            {item.children !== undefined &&
-              createRoutesList(item.children, `${item.route}`)}
+            {item.children && createRoutesList(item.children, `${item.route}`)}
             <Route
               key={item.route}
               path={`${path ?? ""}${item.route}/`}

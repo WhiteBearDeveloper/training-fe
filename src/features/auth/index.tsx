@@ -28,10 +28,8 @@ export const Auth = ({ closeModal }: Props): JSX.Element => {
     setEmail(emailCurrent.value);
     // @ts-expect-error
     setPassword(passwordCurrent.value);
-    email !== null &&
-      email !== undefined &&
-      password !== null &&
-      password !== undefined &&
+    email &&
+      password &&
       setAuthService({
         payload: {
           email,

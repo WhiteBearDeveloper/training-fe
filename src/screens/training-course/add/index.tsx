@@ -14,8 +14,7 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
     // @ts-expect-error
     setName(nameCurrent.value);
 
-    name !== null &&
-      name !== undefined &&
+    name &&
       addTrainingCourseService({
         payload: {
           name,

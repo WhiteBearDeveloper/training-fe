@@ -12,7 +12,7 @@ export class Profile implements StateClassCommon {
 
   async update(id?: number): Promise<any> {
     const response: ProfileModel | undefined = await getProfileService(id);
-    if (response !== undefined) {
+    if (response) {
       this.profile = response;
     }
   }
