@@ -3,7 +3,7 @@ import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
 import { $notificationsStore } from "@store/notifications";
 import { CommonWithProfileId } from "@whitebeardeveloper/training-logic/src/common/types";
 
-interface AuthAnswer extends CommonWithProfileId {}
+interface TrainingCourse extends CommonWithProfileId {}
 
 interface AddTrainingCourse {
   name: string;
@@ -14,9 +14,9 @@ interface Props {
 
 export const addTrainingCourseService = async ({
   payload,
-}: Props): Promise<AuthAnswer | undefined> => {
+}: Props): Promise<TrainingCourse | undefined> => {
   try {
-    const response = await commonApiService<AuthAnswer, AddTrainingCourse>({
+    const response = await commonApiService<TrainingCourse, AddTrainingCourse>({
       url: getTrainingCoursesEndpoint(),
       method: "POST",
       payload,
@@ -28,5 +28,19 @@ export const addTrainingCourseService = async ({
     return response.data;
   } catch (e) {
     console.error("Ошибка создания тренировочного курса");
+  }
+};
+
+export const getTrainingCourseService = async (
+  id?: Props,
+): Promise<TrainingCourse[] | undefined> => {
+  try {
+    const response = await commonApiService<TrainingCourse[], Props>({
+      url: getTrainingCoursesEndpoint(),
+      method: "GET",
+    });
+    return response.data;
+  } catch (e) {
+    console.error("Ошибка получения профиля");
   }
 };
