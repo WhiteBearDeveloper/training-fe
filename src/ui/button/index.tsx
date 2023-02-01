@@ -12,13 +12,19 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button: React.FC<Props> = ({
   text,
   theme = "Main",
+  className,
   ...props
 }): JSX.Element => {
-  const blockClassName = classNames(styles.block, styles[`block${theme}`]);
+  console.log("className :>> ", className);
+  const blockClassName = classNames(
+    styles.block,
+    styles[`block${theme}`],
+    className,
+  );
   return (
     <div className={blockClassName}>
       {text}
-      <button className={styles.button}></button>
+      <button className={styles.button} {...props}></button>
     </div>
   );
 };
