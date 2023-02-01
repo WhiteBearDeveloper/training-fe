@@ -1,5 +1,5 @@
 import { StateClassCommon } from "@store/types";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { ProfileModel } from "@whitebeardeveloper/training-logic/src/profile/types";
 import { getProfileService } from "@api/services/profile";
 
@@ -13,7 +13,9 @@ export class Profile implements StateClassCommon {
   async update(id?: number): Promise<any> {
     const response: ProfileModel | undefined = await getProfileService(id);
     if (response) {
-      this.profile = response;
+      runInAction(() => {
+        this.profile = response;
+      });
     }
   }
 

@@ -1,5 +1,5 @@
 import { StateClassCommon } from "@store/types";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/src/training-course/types";
 import { $profileStore } from "@store/profile";
 import { getTrainingCourseService } from "@api/services/training-courses";
@@ -23,12 +23,16 @@ export class TrainingCourse implements StateClassCommon {
     const response: TrainingCourseModel[] | undefined =
       await getTrainingCourseService().then((data) => {
         if (this.isNotStarted) {
-          this.isNotStarted = false;
+          runInAction(() => {
+            this.isNotStarted = false;
+          });
         }
         return data;
       });
     if (response !== undefined) {
-      this.trainingCourse = response;
+      runInAction(() => {
+        this.trainingCourse = response;
+      });
     }
   };
 
