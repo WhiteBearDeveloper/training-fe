@@ -1,12 +1,13 @@
 import { Auth } from "@features/auth";
-import { Modal } from "@ui";
+import { Button, Modal } from "@ui";
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import linkStyles from "@styles/modules/abstracts/link.module.scss";
 import styles from "./profile.module.scss";
 import { $profileStore } from "@store/profile";
 import { joinFullName } from "@utils/helpers/strings.helper";
-import { getAuthEmail } from "@services/auth";
+import { clearAuthStorage, getAuthEmail } from "@services/auth";
+import { resetRegisteredStates } from "@store/helpers";
 
 export const Profile = observer((): JSX.Element => {
   const [isAuthModalOpen, setAuthModalStatus] = useState<boolean>(false);
@@ -15,14 +16,31 @@ export const Profile = observer((): JSX.Element => {
   const onCloseHandler = (): void => {
     setAuthModalStatus(false);
   };
+
+  const onLogoutHandler = (): void => {
+    resetRegisteredStates();
+    clearAuthStorage();
+  };
+
   return profile ? (
-    profile?.firstName ?? profile?.lastName ? (
-      <div className={linkStyles.linkBase}>
-        {joinFullName(profile.firstName, profile.middleName, profile.lastName)}
-      </div>
-    ) : (
-      <div className={linkStyles.linkBase}>{getAuthEmail()}</div>
-    )
+    <div className={styles.info}>
+      {profile?.firstName ?? profile?.lastName ? (
+        <div className={linkStyles.linkBase}>
+          {joinFullName(
+            profile.firstName,
+            profile.middleName,
+            profile.lastName,
+          )}
+        </div>
+      ) : (
+        <div className={linkStyles.linkBase}>{getAuthEmail()}</div>
+      )}
+      <Button
+        text="Выйти"
+        className={styles.logout}
+        onClick={onLogoutHandler}
+      />
+    </div>
   ) : (
     <>
       <button
