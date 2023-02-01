@@ -15,7 +15,6 @@ export const Button: React.FC<Props> = ({
   className,
   ...props
 }): JSX.Element => {
-  console.log("className :>> ", className);
   const blockClassName = classNames(
     styles.block,
     styles[`block${theme}`],
