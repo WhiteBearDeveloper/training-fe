@@ -12,7 +12,7 @@ const Component = ({ data }: Props): JSX.Element => {
   return (
     <>
       {data.length && (
-        <div className={gridStyles.list}>
+        <div className={classNames(gridStyles.list, styles.list)}>
           {data?.map((item) => (
             <div
               className={classNames(gridStyles.item, gridStyles["item-3x"])}
