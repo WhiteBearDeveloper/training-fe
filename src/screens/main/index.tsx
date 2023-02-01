@@ -7,8 +7,9 @@ import { observer } from "mobx-react-lite";
 import { $trainingCourseStore } from "@features/training-course/training-course.store";
 import classNames from "classnames";
 
-const Component = observer((): JSX.Element => {
-  const { trainingCourse, myTrainingCourse, update } = $trainingCourseStore;
+const Component = observer((): JSX.Element | null => {
+  const { trainingCourse, myTrainingCourse, update, isNotStarted } =
+    $trainingCourseStore;
   useEffect(() => {
     !trainingCourse && update();
   }, [trainingCourse]);
@@ -28,11 +29,11 @@ const Component = observer((): JSX.Element => {
         </section>
       )}
     </>
-  ) : (
+  ) : !isNotStarted ? (
     <section className={blockStyles.block}>
       На данный момент нет активных тренировочных курсов
     </section>
-  );
+  ) : null;
 });
 
 export const MainScreen = React.memo(Component);
