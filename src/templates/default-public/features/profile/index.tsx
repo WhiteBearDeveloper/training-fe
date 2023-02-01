@@ -4,15 +4,26 @@ import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import linkStyles from "@styles/modules/abstracts/link.module.scss";
 import styles from "./profile.module.scss";
+import { $profileStore } from "@store/profile";
+import { joinFullName } from "@utils/helpers/strings.helper";
+import { getAuthEmail } from "@services/auth";
 
 export const Profile = observer((): JSX.Element => {
   const [isAuthModalOpen, setAuthModalStatus] = useState<boolean>(false);
+  const { profile } = $profileStore;
 
   const onCloseHandler = (): void => {
     setAuthModalStatus(false);
   };
-
-  return (
+  return profile ? (
+    profile?.firstName ?? profile?.lastName ? (
+      <div className={linkStyles.linkBase}>
+        {joinFullName(profile.firstName, profile.middleName, profile.lastName)}
+      </div>
+    ) : (
+      <div className={linkStyles.linkBase}>{getAuthEmail()}</div>
+    )
+  ) : (
     <>
       <button
         className={linkStyles.linkBase}
