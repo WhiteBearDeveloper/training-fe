@@ -1,6 +1,6 @@
 import { getLoginEndpoint, getRegistrationEndpoint } from "@api/endpoints/auth";
 import { commonApiService } from "../common";
-import { setAuthToken } from "@services/auth";
+import { setAuthEmail, setAuthToken } from "@services/auth";
 import { $userStore } from "@store/user";
 import { AuthTypes } from "./types";
 import { $notificationsStore } from "@store/notifications";
@@ -34,7 +34,7 @@ export const setAuthService = async ({
       payload,
     });
     setAuthToken(response.data.token);
-    $userStore.setEmail(response.data.email);
+    setAuthEmail(response.data.email);
     $userStore.activateAuthorizationStatus();
     await $profileStore.update();
     $notificationsStore.addNotification({
