@@ -1,5 +1,4 @@
 import React from "react";
-import gridStyles from "@styles/modules/abstracts/grid.module.scss";
 import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/src/training-course/types";
 import classNames from "classnames";
 import styles from "./list.module.scss";
@@ -12,10 +11,10 @@ const Component = ({ data }: Props): JSX.Element => {
   return (
     <>
       {data.length && (
-        <div className={classNames(gridStyles.list, styles.list)}>
+        <div className={classNames(styles.list)}>
           {data?.map((item) => (
             <div
-              className={classNames(gridStyles.item, gridStyles["item-3x"])}
+              className={classNames(styles.block)}
               key={`training-list-${item.id}`}
             >
               <div className={styles.item}>{item.name}</div>

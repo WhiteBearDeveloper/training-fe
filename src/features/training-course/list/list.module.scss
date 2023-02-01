@@ -1,9 +1,42 @@
 @import "@styles/abstracts";
 
-$marginY: 30px;
+$margin: $grid-gap;
+$marginMobile: $grid-gap / 2;
+$mobileCheckpoint: "lg";
 
 .list {
-  margin-top: -$marginY;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: -$marginMobile;
+  margin-right: -$marginMobile;
+  margin-left: -$marginMobile;
+  @include transition(margin, padding);
+  @include media-breakpoint-up($mobileCheckpoint) {
+    margin-top: -$margin;
+    margin-right: -$margin;
+    margin-left: -$margin;
+  }
+}
+.block {
+  width: 50%;
+  padding-right: $marginMobile;
+  padding-left: $marginMobile;
+  margin-top: $marginMobile * 2;
+  @include transition(margin, padding, width);
+
+  @include media-breakpoint-up($mobileCheckpoint) {
+    padding-right: $margin;
+    padding-left: $margin;
+    margin-top: $margin * 2;
+  }
+
+  @include media-breakpoint-up(sm) {
+    width: 33.33%;
+  }
+  @include media-breakpoint-up(md) {
+    width: 25%;
+  }
 }
 .item {
   $shadowColor: $main-color;
@@ -11,19 +44,25 @@ $marginY: 30px;
   display: flex;
   align-items: flex-end;
   width: 100%;
-  height: 200px;
+  height: 140px;
   cursor: pointer;
   border-radius: $border-radius-main;
   font-size: 16px;
   font-weight: 500;
   background-color: $color-whitesmoke;
   box-shadow: 0px 0px 10px rgba($shadowColor, 0);
-  @include transition(box-shadow, color);
+  @include transition(box-shadow, color, height);
   @include adaptiveDefaultGap(false, "padding");
-  margin-top: $marginY;
 
   &:hover {
     color: $main-color;
     box-shadow: 0px 0px 10px rgba($shadowColor, 0.45);
+  }
+
+  @include media-breakpoint-up(xxs) {
+    height: 170px;
+  }
+  @include media-breakpoint-up(sm) {
+    height: 200px;
   }
 }
