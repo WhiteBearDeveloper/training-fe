@@ -34,6 +34,7 @@ export const setAuthService = async ({
       payload,
     });
     setAuthToken(response.data.token);
+    $userStore.setEmail(response.data.email);
     $userStore.activateAuthorizationStatus();
     await $profileStore.update();
     $notificationsStore.addNotification({
