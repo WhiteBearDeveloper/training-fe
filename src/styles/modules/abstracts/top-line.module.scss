@@ -1,0 +1,13 @@
+@import "@styles/abstracts";
+
+.line {
+  display: flex;
+  align-items: center;
+  @include adaptiveDefaultGap(false, margin-bottom);
+}
+.buttons {
+  margin-left: auto;
+}
+.button:not(:last-child) {
+  @include adaptiveDefaultGap(false, margin-right);
+}
