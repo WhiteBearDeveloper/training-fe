@@ -3,6 +3,7 @@ import {
   MainScreen,
   TrainingCourseScreen,
   TrainingCourseAddScreen,
+  TrainingCourseDetailScreen,
 } from "@screens";
 
 export const routes: RouteItem[] = [
@@ -17,6 +18,10 @@ export const routes: RouteItem[] = [
       {
         route: "/add",
         component: TrainingCourseAddScreen,
+      },
+      {
+        route: "/:id",
+        component: TrainingCourseDetailScreen,
       },
     ],
   },
