@@ -6,10 +6,17 @@ import titleStyles from "@styles/modules/abstracts/title.module.scss";
 import { observer } from "mobx-react-lite";
 import { $trainingCourseStore } from "@features/training-course/training-course.store";
 import classNames from "classnames";
+import topLineStyles from "@styles/modules/abstracts/top-line.module.scss";
+import { Button } from "@ui";
+import { NavLink } from "react-router-dom";
+import { $profileStore } from "@store/profile";
 
 const Component = observer((): JSX.Element | null => {
   const { trainingCourse, myTrainingCourse, update, isNotStarted } =
     $trainingCourseStore;
+
+  const { profile } = $profileStore;
+
   useEffect(() => {
     !trainingCourse && update();
   }, [trainingCourse]);
@@ -18,6 +25,16 @@ const Component = observer((): JSX.Element | null => {
 
   return trainingCourse?.length ? (
     <>
+      {profile && (
+        <div className={topLineStyles.line}>
+          <div className={topLineStyles.buttons}>
+            <NavLink to="/training-course/add">
+              <Button text="Создать курс" className={topLineStyles.button} />
+            </NavLink>
+          </div>
+        </div>
+      )}
+
       <section className={blockClass}>
         <h1 className={titleStyles.lg}>Тренировочные курсы</h1>
         <TrainingCoursesList data={trainingCourse} />
