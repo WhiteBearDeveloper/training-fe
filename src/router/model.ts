@@ -1,7 +1,6 @@
 import { RouteItem } from "@router/types";
 import {
   MainScreen,
-  TrainingCourseScreen,
   TrainingCourseAddScreen,
   TrainingCourseDetailScreen,
 } from "@screens";
@@ -12,17 +11,11 @@ export const routes: RouteItem[] = [
     component: MainScreen,
   },
   {
-    route: "/training-course",
-    component: TrainingCourseScreen,
-    children: [
-      {
-        route: "/add",
-        component: TrainingCourseAddScreen,
-      },
-      {
-        route: "/:id",
-        component: TrainingCourseDetailScreen,
-      },
-    ],
+    route: "/training-course/add",
+    component: TrainingCourseAddScreen,
+  },
+  {
+    route: "/training-course/:id",
+    component: TrainingCourseDetailScreen,
   },
 ];
