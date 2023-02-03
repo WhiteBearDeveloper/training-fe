@@ -19,7 +19,7 @@ export class TrainingCourse implements StateClassCommon {
       : null;
   }
 
-  update = async (id?: number): Promise<any> => {
+  update = async (): Promise<any> => {
     const response: TrainingCourseModel[] | undefined =
       await getTrainingCourseService().then((data) => {
         if (this.isNotStarted) {
@@ -29,7 +29,7 @@ export class TrainingCourse implements StateClassCommon {
         }
         return data;
       });
-    if (response !== undefined) {
+    if (response) {
       runInAction(() => {
         this.trainingCourse = response;
       });
