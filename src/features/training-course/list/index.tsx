@@ -3,6 +3,7 @@ import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/dist/tra
 import classNames from "classnames";
 import styles from "./list.module.scss";
 import { NavLink } from "react-router-dom";
+import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/dist/common/helpers/string.helper";
 
 interface Props {
   data: TrainingCourseModel[];
@@ -21,7 +22,9 @@ const Component = ({ data }: Props): JSX.Element => {
                 key={`training-list-${item.id}`}
                 state={{ ...item }}
               >
-                <div className={styles.item}>{item.name}</div>
+                <div className={styles.item}>
+                  {capitalizeFirstLetter(item.name)}
+                </div>
               </NavLink>
             );
           })}
