@@ -1,5 +1,5 @@
 import React from "react";
-import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/src/training-course/types";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/dist/training-course/types";
 import classNames from "classnames";
 import styles from "./list.module.scss";
 import { NavLink } from "react-router-dom";
