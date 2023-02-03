@@ -2648,10 +2648,10 @@
     "@webassemblyjs/ast" "1.11.1"
     "@xtuc/long" "4.2.2"
 
-"@whitebeardeveloper/training-logic@^1.0.14":
-  version "1.0.14"
-  resolved "https://npm.pkg.github.com/download/@whitebeardeveloper/training-logic/1.0.14/b66c6ace85cb694d0801bc6506812487e1f3f62d#b66c6ace85cb694d0801bc6506812487e1f3f62d"
-  integrity sha512-TMI+LU0tNnXc0K4QNhzjW4fZRraRLgBVllDEYqpKF9k/TgDFpSQQ4UVYy6X2dfw04V8Y0QRpuX8xl/jelctC8A==
+"@whitebeardeveloper/training-logic@^1.0.15":
+  version "1.0.15"
+  resolved "https://npm.pkg.github.com/download/@whitebeardeveloper/training-logic/1.0.15/8d06a57d8cb3dc5b59da92a1e5e9de4551999f2d#8d06a57d8cb3dc5b59da92a1e5e9de4551999f2d"
+  integrity sha512-UdMeIadvM2MDMNC2ROqp27t7Gyabvu3fiX0RiFx8Zz6r9CB1hNhfxCpBgolIgg9eonx07JfXHDiHGRPzsIFg6w==
   dependencies:
     copyfiles "^2.4.1"
 
