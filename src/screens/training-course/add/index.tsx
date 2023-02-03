@@ -5,7 +5,7 @@ import titleStyles from "@styles/modules/abstracts/title.module.scss";
 import formStyles from "@styles/modules/abstracts/form.module.scss";
 import { Button, FormWrapper, InputText } from "@ui";
 import topLineStyles from "@styles/modules/abstracts/top-line.module.scss";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useGoBackHook } from "@utils/hooks/navigate.hook";
 
 export const TrainingCourseAddScreen = (): JSX.Element => {
   const [name, setName] = useState<string | null>(null);
@@ -24,15 +24,7 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
       });
   };
 
-  const navigate: NavigateFunction = useNavigate();
-
-  const goBackHandler: () => void = (): void => {
-    if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1);
-    } else {
-      navigate("/", { replace: true });
-    }
-  };
+  const goBackHandler = useGoBackHook();
 
   return (
     <>
