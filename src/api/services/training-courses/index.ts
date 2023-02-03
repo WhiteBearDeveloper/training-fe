@@ -1,6 +1,7 @@
 import { commonApiService } from "../common";
 import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
 import { $notificationsStore } from "@store/notifications";
+import { WithId } from "@whitebeardeveloper/training-logic/src/common/types";
 import {
   TrainingCourseModel,
   TrainingCourseProps,
@@ -32,16 +33,31 @@ export const addTrainingCourseService = async ({
   }
 };
 
-export const getTrainingCourseService = async (
-  id?: Props,
-): Promise<TrainingCourseModel[] | undefined> => {
+export const getTrainingCourseService = async (): Promise<
+  TrainingCourseModel[] | undefined
+> => {
   try {
-    const response = await commonApiService<TrainingCourseModel[], Props>({
+    const response = await commonApiService<TrainingCourseModel[]>({
       url: getTrainingCoursesEndpoint(),
       method: "GET",
     });
     return response.data;
   } catch (e) {
     console.error("Ошибка получения списка тренировок");
+  }
+};
+
+export const getTrainingCourseByIdService = async (
+  id: number,
+): Promise<TrainingCourseModel | undefined> => {
+  try {
+    const url = `${getTrainingCoursesEndpoint()}/${id}`;
+    const response = await commonApiService<TrainingCourseModel, WithId>({
+      url,
+      method: "GET",
+    });
+    return response.data;
+  } catch (e) {
+    console.error("Ошибка получения тренировочного курса");
   }
 };
