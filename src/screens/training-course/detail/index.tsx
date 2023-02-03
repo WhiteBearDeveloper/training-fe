@@ -1,22 +1,29 @@
 import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/src/training-course/types";
-import React from "react";
-import { NavigateFunction, useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import blockStyles from "@styles/modules/abstracts/block.module.scss";
 import titleStyles from "@styles/modules/abstracts/title.module.scss";
 import topLineStyles from "@styles/modules/abstracts/top-line.module.scss";
 import { Button } from "@ui";
+import { getTrainingCourseByIdService } from "@api/services/training-courses";
+import { useGoBackHook } from "@utils/hooks/navigate.hook";
 
-export const TrainingCourseDetailScreen = (): JSX.Element => {
+export const TrainingCourseDetailScreen = (): JSX.Element | null => {
+  const [training, setTraining] = useState<TrainingCourseModel>();
+  const { id } = useParams<{ id?: string }>();
   const state: TrainingCourseModel = useLocation().state;
-  const navigate: NavigateFunction = useNavigate();
-  const goBackHandler: () => void = (): void => {
-    if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1);
-    } else {
-      navigate("/", { replace: true });
-    }
-  };
-  return (
+
+  const goBackHandler = useGoBackHook();
+
+  useEffect(() => {
+    getTrainingCourseByIdService(Number(id))
+      .then((data) => data && setTraining(data))
+      .catch((error) => console.log("error :>> ", error));
+  }, []);
+
+  const trainingName: string = state?.name ?? training?.name ?? "";
+
+  return training ?? state ? (
     <>
       <div className={topLineStyles.line}>
         <div className={topLineStyles.buttons}>
@@ -27,9 +34,11 @@ export const TrainingCourseDetailScreen = (): JSX.Element => {
           />
         </div>
       </div>
-      <div className={blockStyles.block}>
-        <h1 className={titleStyles.lg}>{state?.name}</h1>
-      </div>
+      {!!trainingName && (
+        <div className={blockStyles.block}>
+          <h1 className={titleStyles.lg}>{trainingName}</h1>
+        </div>
+      )}
     </>
-  );
+  ) : null;
 };
