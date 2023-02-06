@@ -13,7 +13,7 @@ export const Notifications = observer(() => {
     <div className={styles.wrapper}>
       {!(notifications == null) &&
         !(notifications.length === 0) &&
-        notifications.map((item) => {
+        notifications.map((item: NotificationStore) => {
           const className = classNames(
             styles.item,
             styles[`item-${item.type}`],

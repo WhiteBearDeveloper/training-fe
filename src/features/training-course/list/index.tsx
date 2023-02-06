@@ -1,9 +1,9 @@
 import React from "react";
-import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/dist/training-course/types";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/training-course/types";
 import classNames from "classnames";
 import styles from "./list.module.scss";
 import { NavLink } from "react-router-dom";
-import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/dist/common/helpers/string.helper";
+import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/logic/common/helpers/string.helper";
 
 interface Props {
   data: TrainingCourseModel[];
