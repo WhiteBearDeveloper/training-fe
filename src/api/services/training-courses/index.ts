@@ -1,11 +1,11 @@
 import { commonApiService } from "../common";
 import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
 import { $notificationsStore } from "@store/notifications";
-import { WithId } from "@whitebeardeveloper/training-logic/logic/common/types";
+import { WithId } from "@whitebeardeveloper/training-logic/logic/types/common.types";
 import {
   TrainingCourseModel,
   TrainingCourseProps,
-} from "@whitebeardeveloper/training-logic/logic/training-course/types";
+} from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 
 interface Props {
   payload: TrainingCourseProps;

@@ -1,4 +1,4 @@
-import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/training-course/types";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import blockStyles from "@styles/modules/abstracts/block.module.scss";
@@ -7,8 +7,7 @@ import topLineStyles from "@styles/modules/abstracts/top-line.module.scss";
 import { Button } from "@ui";
 import { getTrainingCourseByIdService } from "@api/services/training-courses";
 import { useGoBackHook } from "@utils/hooks/navigate.hook";
-import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/logic/common/helpers/string.helper";
-
+import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/logic/helpers/strings.helper";
 export const TrainingCourseDetailScreen = (): JSX.Element | null => {
   const [training, setTraining] = useState<TrainingCourseModel>();
   const { id } = useParams<{ id?: string }>();

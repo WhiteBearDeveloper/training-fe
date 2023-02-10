@@ -1,6 +1,6 @@
 import { StateClassCommon } from "@store/types";
 import { makeAutoObservable, runInAction } from "mobx";
-import { ProfileModel } from "@whitebeardeveloper/training-logic/logic/profile/types";
+import { ProfileModel } from "@whitebeardeveloper/training-logic/logic/types/profile.types";
 import { getProfileService } from "@api/services/profile";
 
 export class Profile implements StateClassCommon {

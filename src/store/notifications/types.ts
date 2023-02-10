@@ -1,4 +1,4 @@
-import { WithId } from "@whitebeardeveloper/training-logic/logic/common/types";
+import { WithId } from "@whitebeardeveloper/training-logic/logic/types/common.types";
 
 type NotificationType = "error" | "success";
 export interface Notification {

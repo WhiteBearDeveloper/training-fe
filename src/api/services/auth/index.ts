@@ -8,7 +8,7 @@ import { $profileStore } from "@store/profile";
 import {
   AuthAnswer,
   AuthProps,
-} from "@whitebeardeveloper/training-logic/logic/auth/types";
+} from "@whitebeardeveloper/training-logic/logic/types/auth.types";
 interface SetAuthService {
   payload: AuthProps;
   type: AuthTypes;

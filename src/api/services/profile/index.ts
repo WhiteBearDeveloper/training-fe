@@ -1,4 +1,4 @@
-import { ProfileModel } from "@whitebeardeveloper/training-logic/logic/profile/types";
+import { ProfileModel } from "@whitebeardeveloper/training-logic/logic/types/profile.types";
 import { commonApiService } from "../common";
 import { getMyProfileEndpoint } from "@api/endpoints/profile";
 

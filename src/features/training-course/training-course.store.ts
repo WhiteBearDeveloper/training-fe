@@ -1,6 +1,6 @@
 import { StateClassCommon } from "@store/types";
 import { makeAutoObservable, runInAction } from "mobx";
-import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/training-course/types";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 import { $profileStore } from "@store/profile";
 import { getTrainingCourseService } from "@api/services/training-courses";
 
