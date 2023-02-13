@@ -29,7 +29,8 @@
         "refactor",
         "revert",
         "style",
-        "test"
+        "test",
+        "config"
       ]
     ]
   },
@@ -92,6 +93,11 @@
             "description": "Reverts a previous commit",
             "title": "Reverts",
             "emoji": "🗑"
+          },
+          "config": {
+            "description": "Changes in config files",
+            "title": "Configs",
+            "emoji": "🏗️"
           }
         }
       },
