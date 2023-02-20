@@ -1,0 +1,104 @@
+{
+  "commitizen": {
+    "name": "cz_customize",
+    "version": "0.1.0",
+    "version_files": ["src/__version__.py", "pyproject.toml:version"],
+    "style": [
+      ["qmark", "fg:#ff9d00 bold"],
+      ["question", "bold"],
+      ["answer", "fg:#ff9d00 bold"],
+      ["pointer", "fg:#ff9d00 bold"],
+      ["highlighted", "fg:#ff9d00 bold"],
+      ["selected", "fg:#cc5454"],
+      ["separator", "fg:#cc5454"],
+      ["instruction", ""],
+      ["text", ""],
+      ["disabled", "fg:#858585 italic"]
+    ],
+    "customize": {
+      "message_template": "{{change_type}}: {{scope}} - {{short_description}} {% if message %}\n{{message}}{% endif %} {% if is_hotfix %}\nBREAKING{% if hotfix_description %}: {{hotfix_description}}{% endif %}{% endif %}",
+      "questions": [
+        {
+          "type": "list",
+          "name": "change_type",
+          "choices": [
+            {
+              "value": "feature",
+              "name": "feature: A new feature"
+            },
+            {
+              "value": "fix",
+              "name": "fix: A bug fix"
+            },
+            {
+              "value": "docs",
+              "name": "docs: Documentation only changes"
+            },
+            {
+              "value": "style",
+              "name": "style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
+            },
+            {
+              "value": "refactor",
+              "name": "refactor: A code change that neither fixes a bug nor adds a feature"
+            },
+            {
+              "value": "perf",
+              "name": "perf: A code change that improves performance"
+            },
+            {
+              "value": "test",
+              "name": "test: Adding missing tests or correcting existing tests"
+            },
+            {
+              "value": "build",
+              "name": "build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)"
+            },
+            {
+              "value": "ci",
+              "name": "ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)"
+            },
+            {
+              "value": "chore",
+              "name": "chore: Other changes that don't modify src or test files"
+            },
+            {
+              "value": "revert",
+              "name": "revert: Reverts a previous commit"
+            },
+            {
+              "value": "config",
+              "name": "config: Changes in config file"
+            }
+          ],
+          "message": "Select the type of change you are committing"
+        },
+        {
+          "type": "input",
+          "name": "scope",
+          "message": "What is the scope of this change? (class or file name):"
+        },
+        {
+          "type": "input",
+          "name": "short_description",
+          "message": "Write a short and imperative summary of the code changes: (lower case and no period)"
+        },
+        {
+          "type": "input",
+          "name": "message",
+          "message": "Provide additional contextual information about the code changes: (press [enter] to skip)"
+        },
+        {
+          "type": "confirm",
+          "name": "is_hotfix",
+          "message": "Is your commit a hotfix?"
+        },
+        {
+          "type": "input",
+          "name": "hotfix_description",
+          "message": "Write a short information about hotfix: (press [enter] to skip)"
+        }
+      ]
+    }
+  }
+}
