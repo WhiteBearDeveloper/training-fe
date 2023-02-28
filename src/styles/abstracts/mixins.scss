@@ -69,11 +69,9 @@
 @mixin transition($transitions...) {
   $transition-result: ();
   @each $transition in $transitions {
-    $transition-result: append(
-      $transition-result,
-      $transition $transition-main,
-      comma
-    );
+    $transition-result: append($transition-result,
+    $transition $transition-main,
+    comma);
   }
   transition: $transition-result;
 }
