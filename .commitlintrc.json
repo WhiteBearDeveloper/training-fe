@@ -30,7 +30,8 @@
         "revert",
         "style",
         "test",
-        "config"
+        "config",
+        "debug"
       ]
     ]
   }

@@ -69,6 +69,10 @@
             {
               "value": "config",
               "name": "config: Changes in config file"
+            },
+            {
+              "value": "debug",
+              "name": "debug: Changes required for debugging"
             }
           ],
           "message": "Select the type of change you are committing"
