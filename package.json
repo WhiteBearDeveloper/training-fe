@@ -166,6 +166,8 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.11",
     "husky": "^8.0.3",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.1",
+    "stylelint": "^15.2.0",
+    "stylelint-config-sass-guidelines": "^9.0.1"
   }
 }
