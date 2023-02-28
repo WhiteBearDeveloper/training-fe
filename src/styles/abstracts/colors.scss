@@ -7,6 +7,8 @@ $color-gray: #8f8f93;
 $color-darkslateblue: #4d3388;
 $color-hotpink: #e142ad;
 $color-thistle: #d9cae2;
+$color-seagreen: #2d9448;
+$color-indianred: #c74c3c;
 
 // project colors
 $main-color: $color-darkslateblue;
@@ -14,8 +16,6 @@ $secondary-color: $color-hotpink;
 $text-color: $color-gray;
 
 // gradients
-$purple-pink-gradient: linear-gradient(
-  45deg,
-  $main-color 30%,
-  $secondary-color 100%
-);
+$purple-pink-gradient: linear-gradient(45deg,
+$main-color 30%,
+$secondary-color 100%);
