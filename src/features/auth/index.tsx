@@ -91,7 +91,7 @@ interface LinkProps {
 const Link = ({ type, title, onClick }: LinkProps): JSX.Element => {
   return (
     <span
-      className={classNames(linkStyles.linkBase, styles.link)}
+      className={classNames(linkStyles["link-base"], styles.link)}
       onClick={() => onClick(type)}
     >
       {title}

@@ -1,6 +1,6 @@
-@import "./colors.scss";
+@import "./colors";
 
 $transition-main: 0.3s cubic-bezier(0.16, 0.16, 0.4, 0.82);
-$box-shadow-value: 0px 1px 4px;
+$box-shadow-value: 0 1px 4px;
 $box-shadow-main: $box-shadow-value rgba($color-black, 0.15);
 $border-radius-main: 10px;

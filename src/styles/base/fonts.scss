@@ -1,6 +1,6 @@
-@import "@styles/abstracts/mixins.scss";
+@import "@styles/abstracts/mixins";
 
-$robotoTypes: (
+$roboto-types: (
   "regular": (
     "weight": 400,
   ),
@@ -13,8 +13,8 @@ $families: (
   "roboto": (
     "family": "Roboto",
     "path": "/Roboto/",
-    "familyTypes": $robotoTypes,
+    "family-types": $roboto-types,
   ),
 );
 
-@include fontFaceGenerator($families);
+@include font-face-generator($families);

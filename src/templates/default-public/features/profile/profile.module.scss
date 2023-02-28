@@ -3,9 +3,11 @@
 .modal {
   width: 500px;
 }
+
 .info {
   @include flex();
 }
+
 .logout {
-  @include adaptiveDefaultGap(false, "margin-left");
+  @include adaptive-default-gap(false, "margin-left");
 }

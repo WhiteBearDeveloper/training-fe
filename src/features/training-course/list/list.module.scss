@@ -1,34 +1,35 @@
 @import "@styles/abstracts";
 
 $margin: $grid-gap;
-$marginMobile: $grid-gap / 2;
-$mobileCheckpoint: "lg";
+$margin-mobile: $grid-gap / 2;
+$mobile-checkpoint: "lg";
 
 .list {
-  display: flex;
-  align-items: stretch;
-  flex-wrap: wrap;
-  margin-top: -$marginMobile;
-  margin-right: -$marginMobile;
-  margin-left: -$marginMobile;
   @include transition(margin, padding);
-  @include media-breakpoint-up($mobileCheckpoint) {
-    margin-top: -$margin;
-    margin-right: -$margin;
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$margin-mobile;
+  margin-right: -$margin-mobile;
+  margin-top: -$margin-mobile;
+  @include media-breakpoint-up($mobile-checkpoint) {
     margin-left: -$margin;
+    margin-right: -$margin;
+    margin-top: -$margin;
   }
 }
-.block {
-  width: 50%;
-  padding-right: $marginMobile;
-  padding-left: $marginMobile;
-  margin-top: $marginMobile * 2;
-  @include transition(margin, padding, width);
 
-  @include media-breakpoint-up($mobileCheckpoint) {
-    padding-right: $margin;
-    padding-left: $margin;
+.block {
+  @include transition(margin, padding, width);
+  margin-top: $margin-mobile * 2;
+  padding-left: $margin-mobile;
+  padding-right: $margin-mobile;
+  width: 50%;
+
+  @include media-breakpoint-up($mobile-checkpoint) {
     margin-top: $margin * 2;
+    padding-left: $margin;
+    padding-right: $margin;
   }
 
   @include media-breakpoint-up(sm) {
@@ -38,31 +39,32 @@ $mobileCheckpoint: "lg";
     width: 25%;
   }
 }
+
 .item {
-  $shadowColor: $main-color;
+  $shadow-color: $main-color;
+  @include transition(box-shadow, color, height);
+  @include adaptive-default-gap(false, "padding");
+  align-items: flex-end;
+  background-color: $color-whitesmoke;
+  border-radius: $border-radius-main;
+  box-shadow: 0 0 10px rgba($shadow-color, 0);
+  cursor: pointer;
 
   display: flex;
-  align-items: flex-end;
-  width: 100%;
-  height: 140px;
-  cursor: pointer;
-  border-radius: $border-radius-main;
   font-size: 16px;
   font-weight: 500;
-  background-color: $color-whitesmoke;
-  box-shadow: 0px 0px 10px rgba($shadowColor, 0);
-  @include transition(box-shadow, color, height);
-  @include adaptiveDefaultGap(false, "padding");
-
-  &:hover {
-    color: $main-color;
-    box-shadow: 0px 0px 10px rgba($shadowColor, 0.45);
-  }
+  height: 140px;
+  width: 100%;
 
   @include media-breakpoint-up(xxs) {
     height: 170px;
   }
   @include media-breakpoint-up(sm) {
     height: 200px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px rgba($shadow-color, 0.45);
+    color: $main-color;
   }
 }

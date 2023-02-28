@@ -25,7 +25,7 @@ export const Profile = observer((): JSX.Element => {
   return profile ? (
     <div className={styles.info}>
       {profile?.firstName ?? profile?.lastName ? (
-        <div className={linkStyles.linkBase}>
+        <div className={linkStyles["link-base"]}>
           {joinFullName(
             profile.firstName,
             profile.middleName,
@@ -33,7 +33,7 @@ export const Profile = observer((): JSX.Element => {
           )}
         </div>
       ) : (
-        <div className={linkStyles.linkBase}>{getAuthEmail()}</div>
+        <div className={linkStyles["link-base"]}>{getAuthEmail()}</div>
       )}
       <Button
         text="Выйти"
@@ -44,7 +44,7 @@ export const Profile = observer((): JSX.Element => {
   ) : (
     <>
       <button
-        className={linkStyles.linkBase}
+        className={linkStyles["link-base"]}
         onClick={() => setAuthModalStatus((prev) => !prev)}
       >
         Войти

@@ -1,11 +1,11 @@
 @import "@styles/abstracts";
 
 @mixin common() {
-  cursor: pointer;
   @include transition(color);
+  cursor: pointer;
 }
 
-.linkBase {
+.link-base {
   @include common();
 
   &:hover {

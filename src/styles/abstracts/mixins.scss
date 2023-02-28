@@ -2,24 +2,29 @@
 @import "./colors";
 
 @mixin placeholder {
-  &::-webkit-input-placeholder {
+  /* stylelint-disable selector-pseudo-element-no-unknown */
+  &::input-placeholder {
     @content;
   }
-  &:-moz-placeholder {
+  /* stylelint-enable selector-pseudo-element-no-unknown */
+
+  &:placeholder {
     @content;
   }
-  &::-moz-placeholder {
+
+  &::placeholder {
     @content;
   }
-  &:-ms-input-placeholder {
+
+  &:input-placeholder {
     @content;
   }
 }
 
 @mixin media-breakpoint-down($breakpoint, $breakpoints: $media-sizes) {
   @if index(map-keys($breakpoints), $breakpoint) {
-    $normalizedBreakpoint: map-get($breakpoints, $breakpoint);
-    @media (max-width: $normalizedBreakpoint) {
+    $normalized-breakpoint: map-get($breakpoints, $breakpoint);
+    @media (max-width: $normalized-breakpoint) {
       @content;
     }
   } @else {
@@ -29,8 +34,8 @@
 
 @mixin media-breakpoint-up($breakpoint, $breakpoints: $media-sizes) {
   @if index(map-keys($breakpoints), $breakpoint) {
-    $normalizedBreakpoint: map-get($breakpoints, $breakpoint);
-    @media (min-width: $normalizedBreakpoint + 1) {
+    $normalized-breakpoint: map-get($breakpoints, $breakpoint);
+    @media (min-width: ($normalized-breakpoint + 1)) {
       @content;
     }
   } @else {
@@ -39,22 +44,22 @@
 }
 
 @mixin media-breakpoint-between(
-  $breakpointStart,
-  $breakpointEnd,
+  $breakpoint-start,
+  $breakpoint-end,
   $breakpoints: $media-sizes
 ) {
-  @if not(index(map-keys($breakpoints), $breakpointEnd)) {
-    @error "Значение #{$breakpointStart} должно находиться в массиве!";
-  } @else if not(index(map-keys($breakpoints), $breakpointEnd)) {
-    @error "Значение #{$breakpointEnd} должно находиться в массиве!";
+  @if not(index(map-keys($breakpoints), $breakpoint-end)) {
+    @error "Значение #{$breakpoint-start} должно находиться в массиве!";
+  } @else if not(index(map-keys($breakpoints), $breakpoint-end)) {
+    @error "Значение #{$breakpoint-end} должно находиться в массиве!";
   } @else {
-    $normalizedBreakpointStart: map-get($breakpoints, $breakpointStart);
-    $normalizedBreakpointEnd: map-get($breakpoints, $breakpointEnd);
+    $normalized-breakpoint-start: map-get($breakpoints, $breakpoint-start);
+    $normalized-breakpoint-end: map-get($breakpoints, $breakpoint-end);
 
-    @if ($normalizedBreakpointStart >= $normalizedBreakpointEnd) {
+    @if ($normalized-breakpoint-start >= $normalized-breakpoint-end) {
       @error "Стартовая точка ограничения должна быть меньше конечной!";
     } @else {
-      @media (min-width: $normalizedBreakpointStart + 1) and (max-width: $normalizedBreakpointEnd) {
+      @media (min-width: ($normalized-breakpoint-start + 1)) and (max-width: $normalized-breakpoint-end) {
         @content;
       }
     }
@@ -62,18 +67,18 @@
 }
 
 @mixin transition($transitions...) {
-  $transition_result: ();
+  $transition-result: ();
   @each $transition in $transitions {
-    $transition_result: append(
-      $transition_result,
+    $transition-result: append(
+      $transition-result,
       $transition $transition-main,
       comma
     );
   }
-  transition: $transition_result;
+  transition: $transition-result;
 }
 
-@mixin adaptiveDefaultGap($negative, $margins...) {
+@mixin adaptive-default-gap($negative, $margins...) {
   @if $negative {
     $negative: "-";
   } @else {
@@ -91,16 +96,16 @@
 
 @mixin trbl($arguments...) {
   @if (length($arguments) == 1) {
-    top: $arguments;
-    right: $arguments;
     bottom: $arguments;
     left: $arguments;
+    right: $arguments;
+    top: $arguments;
   }
 }
 
 @mixin flex($type: "center") {
-  display: flex;
   align-items: center;
+  display: flex;
 
   @if $type == "center" {
     justify-content: center;
@@ -109,35 +114,35 @@
   }
 }
 
-@mixin fontFaceSelectorGenerator($family, $url, $weight, $style: normal) {
+@mixin font-face-selector-generator($family, $url, $weight, $style: normal) {
   @font-face {
     font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
     src: url("#{$url}.woff2") format("woff2"),
       url("#{$url}.woff") format("woff");
-    font-weight: $weight;
-    font-style: $style;
   }
 }
 
-@mixin fontFaceGenerator($families) {
-  $basePath: "/assets/fonts";
+@mixin font-face-generator($families) {
+  $base-path: "/assets/fonts";
 
-  @each $familyCode, $familyProps in $families {
-    $familyTypes: map-get($familyProps, "familyTypes");
-    @each $type, $typeProps in $familyTypes {
-      $family: map-get($familyProps, "family");
-      $familyPath: map-get($familyProps, "path");
-      $path: "#{$basePath}#{$familyPath}";
-      $weight: map-get($typeProps, "weight");
-      $url: "#{$path}#{$familyCode}-#{$type}";
+  @each $family-code, $family-props in $families {
+    $family-types: map-get($family-props, "family-types");
+    @each $type, $type-props in $family-types {
+      $family: map-get($family-props, "family");
+      $family-path: map-get($family-props, "path");
+      $path: "#{$$base-path}#{$family-path}";
+      $weight: map-get($type-props, "weight");
+      $url: "#{$path}#{$family-code}-#{$type}";
 
-      $styles: map-get($typeProps, "styles");
+      $styles: map-get($type-props, "styles");
 
-      @include fontFaceSelectorGenerator($family, $url, $weight);
+      @include font-face-selector-generator($family, $url, $weight);
 
       @if ($styles) {
         @each $style in $styles {
-          @include fontFaceSelectorGenerator($family, $url, $weight, $style);
+          @include font-face-selector-generator($family, $url, $weight, $style);
         }
       }
     }

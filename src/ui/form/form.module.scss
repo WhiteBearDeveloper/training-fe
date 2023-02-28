@@ -1,65 +1,68 @@
 @import "@styles/abstracts";
 
-$paddingTop: 7px;
-$paddingTopMobile: 5px;
+$padding-top: 7px;
+$padding-top-mobile: 5px;
 
-@mixin itemPseudo {
-  content: "";
-  position: absolute;
+@mixin item-pseudo {
   bottom: -1px;
-  left: 0;
-  z-index: 10;
+  content: "";
   height: 1px;
+  left: 0;
+  position: absolute;
+  z-index: 10;
+}
+
+.placeholder {
+  @include transition(top, transform, font-size);
+  color: $color-gray;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: $padding-top-mobile + 2;
+  transform: translateY(0);
+
+  @include media-breakpoint-up(xs) {
+    top: $padding-top + 2;
+  }
 }
 
 .item {
   position: relative;
 
-  &:before {
-    @include itemPseudo();
-    width: 100%;
+  &::before {
+    @include item-pseudo();
     background-color: $color-whitesmoke;
+    width: 100%;
   }
 
-  &:after {
-    @include itemPseudo();
-    width: 0;
-    background-color: $main-color;
+  &::after {
+    @include item-pseudo();
     @include transition(width);
+    background-color: $main-color;
+    width: 0;
   }
 
   &:focus-within {
-    & .placeholder {
-      top: 2px;
-      font-size: 12px;
-      transform: translateY(-100%);
-    }
-    &:after {
+    &::after {
       width: 100%;
     }
-  }
-}
-.placeholder {
-  position: absolute;
-  left: 0;
-  top: $paddingTopMobile + 2;
-  pointer-events: none;
-  transform: translateY(0);
-  color: $color-gray;
-  @include transition(top, transform, font-size);
 
-  @include media-breakpoint-up(xs) {
-    top: $paddingTop + 2;
+    .placeholder {
+      font-size: 12px;
+      top: 2px;
+      transform: translateY(-100%);
+    }
   }
 }
+
 .text {
-  padding: $paddingTopMobile 0;
+  padding: $padding-top-mobile 0;
 
   @include placeholder() {
     visibility: hidden;
   }
 
   @include media-breakpoint-up(xs) {
-    padding: $paddingTop 0;
+    padding: $padding-top 0;
   }
 }

@@ -2,8 +2,8 @@
 
 .block {
   background-color: $color-white;
-  box-shadow: $box-shadow-main;
   border-radius: $border-radius-main;
+  box-shadow: $box-shadow-main;
   padding: $grid-gap-small;
 
   @include media-breakpoint-up(xxs) {

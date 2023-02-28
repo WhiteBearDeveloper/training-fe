@@ -23,7 +23,7 @@ export const Modal: React.FC<Props> = ({
 
   const afterOpen = (): void => {
     disablePageScroll();
-    setOverlayCLassName(classNames(styles.overlay, styles.overlayShow));
+    setOverlayCLassName(classNames(styles.overlay, styles["overlay-show"]));
   };
 
   const afterClose = (): void => {
@@ -48,7 +48,7 @@ export const Modal: React.FC<Props> = ({
       {...props}
     >
       <div className={styles.modal}>
-        <CloseIcon className={styles.closeIcon} onClick={onCloseHandler} />
+        <CloseIcon className={styles["close-icon"]} onClick={onCloseHandler} />
         {children}
       </div>
     </ReactModal>

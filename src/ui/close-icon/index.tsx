@@ -11,7 +11,7 @@ interface Props {
 export const CloseIcon = ({ onClick, className }: Props): JSX.Element => {
   const wrapperClass = classNames(
     styles.wrapper,
-    linkStyles.linkBase,
+    linkStyles["link-base"],
     className,
   );
   return <div className={wrapperClass} onClick={onClick} />;

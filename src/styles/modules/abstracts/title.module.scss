@@ -1,40 +1,44 @@
 @import "@styles/abstracts";
 
-@mixin commonTitlesStyles {
-  font-weight: 500;
+@mixin common-titles-styles {
   @include transition(font-size, margin-bottom);
+  font-weight: 500;
 }
 
-@mixin calcSizes($fontSize) {
-  font-size: #{$fontSize}px;
-  margin-bottom: #{round($fontSize / 1.57)}px;
+@mixin calc-sizes($font-size) {
+  font-size: #{$font-size}px;
+  margin-bottom: #{round($font-size / 1.57)}px;
 }
 
-@mixin calcStyles($baseValue) {
-  @include calcSizes(round($baseValue/1.6));
-  @include commonTitlesStyles();
+@mixin calc-styles($baseValue) {
+  @include calc-sizes(round($baseValue/1.6));
+  @include common-titles-styles();
 
   @include media-breakpoint-up(xs) {
-    @include calcSizes(round($baseValue/1.09));
+    @include calc-sizes(round($baseValue/1.09));
   }
   @include media-breakpoint-up(lg) {
-    @include calcSizes($baseValue);
+    @include calc-sizes($baseValue);
   }
 }
 
 .xl {
-  $baseFontSizeValue: 48;
-  @include calcStyles($baseFontSizeValue);
+  $base-font-size-value: 48;
+  @include calc-styles($base-font-size-value);
 }
+
 .lg {
-  $baseFontSizeValue: 32;
-  @include calcStyles($baseFontSizeValue);
+  $base-font-size-value: 32;
+  @include calc-styles($base-font-size-value);
 }
+
 .md {
-  $baseFontSizeValue: 21;
-  @include calcStyles($baseFontSizeValue);
+  $base-font-size-value: 21;
+  @include calc-styles($base-font-size-value);
 }
-.sm {
-}
-.xs {
-}
+
+// .sm {
+// }
+
+// .xs {
+// }

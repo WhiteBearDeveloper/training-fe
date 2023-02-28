@@ -2,39 +2,40 @@
 
 .block {
   $padding: 19px;
-  $paddingMobile: 12px;
-
-  position: relative;
-  display: inline-flex;
+  $padding-mobile: 12px;
+  @include transition(padding);
   border-radius: 1.5em;
+  display: inline-flex;
   font-weight: 500;
 
-  padding: $paddingMobile;
-  @include transition(padding);
+  padding: $padding-mobile;
+
+  position: relative;
+
+  @include media-breakpoint-up(xs) {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
 
   &Main {
+    @include transition(background-position);
     background-image: $purple-pink-gradient;
     background-size: 120%;
     color: $color-white;
-    @include transition(background-position);
 
     &:hover {
       background-position: 100%;
     }
   }
-
-  @include media-breakpoint-up(xs) {
-    padding-right: $padding;
-    padding-left: $padding;
-  }
 }
+
 .button {
-  position: absolute;
-  top: 0;
-  right: 0;
   bottom: 0;
-  left: 0;
-  z-index: 10;
   cursor: pointer;
+  left: 0;
   opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
 }
