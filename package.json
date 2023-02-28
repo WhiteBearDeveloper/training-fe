@@ -170,6 +170,10 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.1",
     "stylelint": "^15.2.0",
-    "stylelint-config-sass-guidelines": "^9.0.1"
+    "stylelint-config-idiomatic-order": "^9.0.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-order": "^6.0.2",
+    "stylelint-prettier": "^3.0.0"
   }
 }
