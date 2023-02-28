@@ -5,7 +5,7 @@ import { GlobalStore } from "@store/global";
 import { NotificationStore } from "@store/notifications/types";
 import classNames from "classnames";
 
-export const Notifications = observer(() => {
+export const Notifications = observer((): JSX.Element => {
   const { $notificationsStore } = useContext(GlobalStore);
   const notifications: null | NotificationStore[] =
     $notificationsStore.notifications;
