@@ -130,7 +130,7 @@
     @each $type, $type-props in $family-types {
       $family: map-get($family-props, "family");
       $family-path: map-get($family-props, "path");
-      $path: "#{$$base-path}#{$family-path}";
+      $path: "#{$base-path}#{$family-path}";
       $weight: map-get($type-props, "weight");
       $url: "#{$path}#{$family-code}-#{$type}";
 
