@@ -75,7 +75,9 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "stylelint": "stylelint '**/*{.css,.scss}'",
+    "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix"
   },
   "eslintConfig": {
     "extends": [
