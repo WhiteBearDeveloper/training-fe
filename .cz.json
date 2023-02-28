@@ -16,7 +16,7 @@
       ["disabled", "fg:#858585 italic"]
     ],
     "customize": {
-      "message_template": "{{change_type}}: {{scope}} - {{short_description}} {% if message %}\n{{message}}{% endif %} {% if is_hotfix %}\nBREAKING{% if hotfix_description %}: {{hotfix_description}}{% endif %}{% endif %}",
+      "message_template": "{{change_type}}: {{scope}} - {% if is_hotfix %}BREAKING: {% endif %}{{short_description}} {% if message %}\n{{message}}{% endif %}",
       "questions": [
         {
           "type": "list",
@@ -96,11 +96,6 @@
           "type": "confirm",
           "name": "is_hotfix",
           "message": "Is your commit a hotfix?"
-        },
-        {
-          "type": "input",
-          "name": "hotfix_description",
-          "message": "Write a short information about hotfix: (press [enter] to skip)"
         }
       ]
     }
