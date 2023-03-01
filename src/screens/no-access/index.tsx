@@ -5,6 +5,7 @@ import linkStyles from "@styles/modules/abstracts/link.module.scss";
 import styles from "./no-access.module.scss";
 import { Auth } from "@features/auth";
 import classNames from "classnames";
+import { AuthTypes } from "@api/services/auth/types";
 
 type ModalTypes = "no-access" | "auth";
 
@@ -12,13 +13,15 @@ export const NoAccessScreen = (): JSX.Element => {
   const [isOpen, setModalStatus] = useState<boolean>(true);
   const [currentModalContent, setCurrentModalContent] =
     useState<ModalTypes>("no-access");
+  const [authType, setAuthType] = useState<AuthTypes>();
 
   const onModalClose = (): void => {
     setModalStatus(false);
   };
 
   const Component = (): JSX.Element => {
-    const onAuthClickHandler = (): void => {
+    const onAuthClickHandler = (type: AuthTypes): void => {
+      setAuthType(type);
       setCurrentModalContent("auth");
     };
     const linkClassName = classNames(linkStyles["link-base"], styles.link);
@@ -29,18 +32,24 @@ export const NoAccessScreen = (): JSX.Element => {
             <h1 className={titleStyles.lg}>Страница не доступна</h1>
             <span>
               Для просмотра текущей страницы Вам необходимо{" "}
-              <span onClick={onAuthClickHandler} className={linkClassName}>
-                авторизоваться
+              <span
+                onClick={() => onAuthClickHandler("registration")}
+                className={linkClassName}
+              >
+                зарегистрироваться
               </span>{" "}
               или{" "}
-              <span onClick={onAuthClickHandler} className={linkClassName}>
+              <span
+                onClick={() => onAuthClickHandler("login")}
+                className={linkClassName}
+              >
                 войти
               </span>
             </span>
           </>
         );
       default:
-        return <Auth closeModal={onModalClose} />;
+        return <Auth closeModal={onModalClose} type={authType} />;
     }
   };
 
