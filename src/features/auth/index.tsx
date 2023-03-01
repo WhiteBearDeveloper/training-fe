@@ -10,12 +10,13 @@ import classNames from "classnames";
 
 interface Props {
   closeModal: () => void;
+  type?: AuthTypes;
 }
 
-export const Auth = ({ closeModal }: Props): JSX.Element => {
+export const Auth = ({ closeModal, type }: Props): JSX.Element => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-  const [authType, setAuthType] = useState<AuthTypes>("login");
+  const [authType, setAuthType] = useState<AuthTypes>(type ?? "login");
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
