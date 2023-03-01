@@ -8,12 +8,14 @@ import { CloseIcon } from "@ui";
 interface Props extends ReactModal.Props {
   className?: string;
   onClose: () => void;
+  isNotClosed?: boolean;
 }
 
 export const Modal: React.FC<Props> = ({
   children,
   onClose,
   className,
+  isNotClosed = false,
   ...props
 }): JSX.Element => {
   const [overlayClassName, setOverlayCLassName] = useState<string>(
@@ -45,10 +47,19 @@ export const Modal: React.FC<Props> = ({
       portalClassName={styles.empty}
       onRequestClose={onCloseHandler}
       overlayRef={(node) => setOverlayRef(node)}
+      {...(isNotClosed && {
+        shouldCloseOnEsc: false,
+        shouldCloseOnOverlayClick: false,
+      })}
       {...props}
     >
       <div className={styles.modal}>
-        <CloseIcon className={styles["close-icon"]} onClick={onCloseHandler} />
+        {!isNotClosed && (
+          <CloseIcon
+            className={styles["close-icon"]}
+            onClick={onCloseHandler}
+          />
+        )}
         {children}
       </div>
     </ReactModal>
