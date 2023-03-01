@@ -23,8 +23,8 @@
           "name": "change_type",
           "choices": [
             {
-              "value": "feature",
-              "name": "feature: A new feature"
+              "value": "feat",
+              "name": "feat: A new feature"
             },
             {
               "value": "fix",
