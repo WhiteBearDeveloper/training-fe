@@ -9,7 +9,7 @@ import { AuthTypes } from "@api/services/auth/types";
 
 type ModalTypes = "no-access" | "auth";
 
-export const NoAccessScreen = (): JSX.Element => {
+export const NoAccessScreen: React.FC = () => {
   const [isOpen, setModalStatus] = useState<boolean>(true);
   const [currentModalContent, setCurrentModalContent] =
     useState<ModalTypes>("no-access");
