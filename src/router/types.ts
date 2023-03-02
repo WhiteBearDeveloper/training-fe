@@ -6,6 +6,9 @@ export interface RouteItem {
   text?: string;
   template?: Template;
   children?: RouteItem[];
+  guards?: Guards[];
 }
 
 export type Template = "defaultPublic";
+
+export type Guards = "isAuth" | "testGuard";

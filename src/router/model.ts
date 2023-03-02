@@ -13,6 +13,7 @@ export const routes: RouteItem[] = [
   {
     route: "/training-course/add",
     component: TrainingCourseAddScreen,
+    guards: ["isAuth"],
   },
   {
     route: "/training-course/:id",

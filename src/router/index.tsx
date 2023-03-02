@@ -4,6 +4,7 @@ import { routes } from "./model";
 import { DefaultPublicTemplate } from "@templates/";
 import { RouteItem, Template } from "./types";
 import { NotFoundScreen } from "@screens";
+import { checkGuards } from "./helpers";
 
 const getTemplate = (
   Children: React.FC,
@@ -23,13 +24,16 @@ const createRoutesList = (routes: RouteItem[], path?: string): JSX.Element => {
   return (
     <>
       {routes.map((item) => {
+        const Component: React.FC = item.guards?.length
+          ? checkGuards(item)
+          : item.component;
         return (
           <React.Fragment key={`${path ?? ""}${item.route}`}>
             {item.children && createRoutesList(item.children, `${item.route}`)}
             <Route
               key={item.route}
               path={`${path ?? ""}${item.route}/`}
-              element={getTemplate(item.component, item.template)}
+              element={getTemplate(Component, item.template)}
             ></Route>
           </React.Fragment>
         );
