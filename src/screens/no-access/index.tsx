@@ -57,7 +57,7 @@ export const NoAccessScreen: React.FC = () => {
     <>
       <Modal
         isOpen={isOpen}
-        onClose={() => console.log()}
+        onClose={() => {}}
         className={styles.modal}
         isNotClosed={true}
       >
