@@ -5,6 +5,7 @@ import { DefaultPublicTemplate } from "@templates/";
 import { RouteItem, Template } from "./types";
 import { NotFoundScreen } from "@screens";
 import { checkGuards } from "./helpers";
+import { observer } from "mobx-react-lite";
 
 const getTemplate = (
   Children: React.FC,
@@ -42,11 +43,11 @@ const createRoutesList = (routes: RouteItem[], path?: string): JSX.Element => {
   );
 };
 
-export const RoutesList = (): JSX.Element => {
+export const RoutesList = observer((): JSX.Element => {
   return (
     <Routes>
       {createRoutesList(routes)}
       <Route path="*" element={<NotFoundScreen />} />
     </Routes>
   );
-};
+});
