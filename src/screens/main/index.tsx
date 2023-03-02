@@ -12,8 +12,7 @@ import { NavLink } from "react-router-dom";
 import { $profileStore } from "@store/profile";
 
 const Component = observer((): JSX.Element | null => {
-  const { trainingCourse, myTrainingCourse, update, isNotStarted } =
-    $trainingCourseStore;
+  const { trainingCourse, myTrainingCourse, update } = $trainingCourseStore;
 
   const { profile } = $profileStore;
 
@@ -46,7 +45,7 @@ const Component = observer((): JSX.Element | null => {
         </section>
       )}
     </>
-  ) : !isNotStarted ? (
+  ) : trainingCourse?.length === 0 ? (
     <section className={blockStyles.block}>
       На данный момент нет активных тренировочных курсов
     </section>
