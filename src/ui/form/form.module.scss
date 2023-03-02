@@ -12,6 +12,12 @@ $padding-top-mobile: 5px;
   z-index: 10;
 }
 
+@mixin placeholder-active {
+  font-size: 12px;
+  top: 2px;
+  transform: translateY(-100%);
+}
+
 .placeholder {
   @include transition(top, transform, font-size);
   color: $color-gray;
@@ -48,9 +54,7 @@ $padding-top-mobile: 5px;
     }
 
     .placeholder {
-      font-size: 12px;
-      top: 2px;
-      transform: translateY(-100%);
+      @include placeholder-active();
     }
   }
 }
