@@ -30,6 +30,10 @@ $padding-top-mobile: 5px;
   @include media-breakpoint-up(xs) {
     top: $padding-top + 2;
   }
+
+  &--fixed {
+    @include placeholder-active();
+  }
 }
 
 .item {
