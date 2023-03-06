@@ -11,8 +11,12 @@ import { schema } from "./schema";
 import { FieldErrors } from "react-hook-form";
 import { TrainingCourseProps } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 import { useForm } from "@api/hooks/form.hook";
+import { useNavigate } from "react-router-dom";
+import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
 
 export const TrainingCourseAddScreen = (): JSX.Element => {
+  const navigate = useNavigate();
+
   type FormData = yup.InferType<typeof schema>;
 
   const onSuccessHandler = (data: FormData): void => {
@@ -21,7 +25,9 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
         name: data.name,
       },
     })
-      .then((data) => console.log())
+      .then((data) => {
+        data?.id && navigate(`/${getTrainingCoursesEndpoint()}/${data?.id}`);
+      })
       .catch((error) => console.error(error));
   };
 
