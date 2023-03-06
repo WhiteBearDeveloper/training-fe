@@ -40,11 +40,7 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
     console.error("errors :>> ", errors);
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AuthProps>({
+  const methods = useForm<AuthProps>({
     schema,
   });
 
@@ -53,14 +49,15 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
       <h1 className={titleStyles.lg}>
         {authType === "login" ? "Войти" : "Регистрация"}
       </h1>
-      <FormWrapper onSubmit={handleSubmit(onSuccessHandler, onFailHandler)}>
+      <FormWrapper
+        onSubmit={methods.handleSubmit(onSuccessHandler, onFailHandler)}
+      >
         <div className={formStyles.row}>
           <InputText
             type="text"
             name="email"
             placeholder="Введите email"
-            register={register}
-            error={errors.email}
+            methods={methods}
           />
         </div>
         <div className={formStyles.row}>
@@ -68,8 +65,7 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
             type="password"
             name="password"
             placeholder="Введите пароль"
-            register={register}
-            error={errors.password}
+            methods={methods}
           />
         </div>
         <div className={classNames(formStyles.row, styles.footer)}>

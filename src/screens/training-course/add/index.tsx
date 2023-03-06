@@ -29,11 +29,7 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
     console.error("errors :>> ", errors);
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TrainingCourseProps>({
+  const methods = useForm<TrainingCourseProps>({
     schema,
   });
 
@@ -52,14 +48,15 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
       </div>
       <div className={blockStyles.block}>
         <h1 className={titleStyles.lg}>Создать тренировочный курс</h1>
-        <FormWrapper onSubmit={handleSubmit(onSuccessHandler, onFailHandler)}>
+        <FormWrapper
+          onSubmit={methods.handleSubmit(onSuccessHandler, onFailHandler)}
+        >
           <div className={formStyles.row}>
             <InputText
               type="text"
               placeholder="Введите название курса"
               name="name"
-              register={register}
-              error={errors.name}
+              methods={methods}
             />
           </div>
           <div className={formStyles.row}>
