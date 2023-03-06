@@ -1,47 +1,41 @@
 import React, { InputHTMLAttributes } from "react";
 import formStyles from "./../form.module.scss";
 import classNames from "classnames";
-import {
-  FieldError,
-  FieldValues,
-  Path,
-  UseFormRegister,
-} from "react-hook-form";
+import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
 interface Props<T extends FieldValues>
   extends InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegister<T>;
-  error?: FieldError;
+  methods: UseFormReturn<T>;
   name: Path<T>;
 }
 
 export const InputText = <T extends FieldValues>(
   props: Props<T>,
 ): JSX.Element => {
-  const itemClass = classNames(
-    formStyles.item,
-    props.error && formStyles.error,
-  );
+  const {
+    register,
+    formState: { errors },
+    watch,
+  } = props.methods;
 
+  const isNotEmpty = watch([props.name])[0];
+
+  const error = errors[props.name]?.message ?? "";
+
+  const itemClass = classNames(formStyles.item, error && formStyles.error);
   const inputClass = classNames(formStyles.text, props.className);
   const placeholderClass = classNames(
     formStyles.placeholder,
-    formStyles["placeholder--fixed"],
+    isNotEmpty && formStyles["placeholder--fixed"],
   );
 
   return (
     <div className={itemClass}>
-      {props.error && (
-        <div className={formStyles["error-text"]}>{props.error.message}</div>
-      )}
+      {error && <div className={formStyles["error-text"]}>{String(error)}</div>}
       <div className={placeholderClass}>
         {props.placeholder && `${props.placeholder}`}
       </div>
-      <input
-        {...props}
-        {...(props.register && props.name && { ...props.register(props.name) })}
-        className={inputClass}
-      />
+      <input {...props} {...register(props.name)} className={inputClass} />
     </div>
   );
 };
