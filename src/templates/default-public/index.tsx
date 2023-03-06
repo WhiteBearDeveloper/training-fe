@@ -16,7 +16,7 @@ export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
   const location = useLocation();
 
   const getLogoComponent = (children: React.ReactNode): React.ReactNode => {
-    const className = styles.headerName;
+    const className = styles["header-name"];
     switch (location.pathname) {
       case "/":
         return <div className={className}>{children}</div>;
@@ -33,11 +33,9 @@ export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
     <div className={styles.wrapper}>
       <Notifications />
       <header className={classNames(styles.header, grid.root)}>
-        <div className={classNames(grid.container, styles.headerInner)}>
+        <div className={classNames(grid.container, styles["header-inner"])}>
           {getLogoComponent(<>Workout</>)}
-          <div className={styles.headerManagment}>
-            <Profile />
-          </div>
+          <Profile />
         </div>
       </header>
       <main className={classNames(styles.main, grid.root)}>

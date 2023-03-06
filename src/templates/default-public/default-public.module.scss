@@ -15,11 +15,11 @@
   border-bottom: 1px solid $color-whitesmoke;
   box-shadow: $box-shadow-main;
 
-  &Inner {
+  &-inner {
     @include flex(between);
   }
 
-  &Name {
+  &-name {
     color: $main-color;
     font-size: 18px;
     font-weight: 500;
