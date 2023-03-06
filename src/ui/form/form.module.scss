@@ -63,6 +63,26 @@ $padding-top-mobile: 5px;
   }
 }
 
+.error {
+  $error-color: $color-indianred;
+
+  &::before,
+  &::after {
+    background-color: $error-color;
+  }
+
+  &-text {
+    bottom: -5px;
+    color: $error-color;
+    font-size: 10px;
+    left: 0;
+    margin-top: 5px;
+    position: absolute;
+    transform: translateY(100%);
+    z-index: 10;
+  }
+}
+
 .text {
   padding: $padding-top-mobile 0;
 
