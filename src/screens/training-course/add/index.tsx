@@ -13,6 +13,7 @@ import { TrainingCourseProps } from "@whitebeardeveloper/training-logic/logic/ty
 import { useForm } from "@api/hooks/form.hook";
 import { useNavigate } from "react-router-dom";
 import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
+import { $trainingCourseStore } from "@features/training-course/training-course.store";
 
 export const TrainingCourseAddScreen = (): JSX.Element => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
     })
       .then((data) => {
         data?.id && navigate(`/${getTrainingCoursesEndpoint()}/${data?.id}`);
+        $trainingCourseStore.update().catch((errors) => console.error(errors));
       })
       .catch((error) => console.error(error));
   };
