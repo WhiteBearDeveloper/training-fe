@@ -1,28 +1,41 @@
 import { addTrainingCourseService } from "@api/services/training-courses";
-import React, { useRef, useState } from "react";
+import React from "react";
 import blockStyles from "@styles/modules/abstracts/block.module.scss";
 import titleStyles from "@styles/modules/abstracts/title.module.scss";
 import formStyles from "@styles/modules/abstracts/form.module.scss";
 import { Button, FormWrapper, InputText } from "@ui";
 import topLineStyles from "@styles/modules/abstracts/top-line.module.scss";
 import { useGoBackHook } from "@utils/hooks/navigate.hook";
+import * as yup from "yup";
+import { schema } from "./schema";
+import { FieldErrors } from "react-hook-form";
+import { TrainingCourseProps } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
+import { useForm } from "@api/hooks/form.hook";
 
 export const TrainingCourseAddScreen = (): JSX.Element => {
-  const [name, setName] = useState<string | null>(null);
-  const nameRef = useRef(null);
-  const onSubmitHandler = (e: React.SyntheticEvent): void => {
-    e.preventDefault();
-    const nameCurrent = nameRef.current;
-    // @ts-expect-error
-    setName(nameCurrent.value);
+  type FormData = yup.InferType<typeof schema>;
 
-    name &&
-      addTrainingCourseService({
-        payload: {
-          name,
-        },
-      });
+  const onSuccessHandler = (data: FormData): void => {
+    addTrainingCourseService({
+      payload: {
+        name: data.name,
+      },
+    })
+      .then((data) => console.log())
+      .catch((error) => console.error(error));
   };
+
+  const onFailHandler = (errors: FieldErrors): void => {
+    console.error("errors :>> ", errors);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TrainingCourseProps>({
+    schema,
+  });
 
   const goBackHandler = useGoBackHook();
 
@@ -39,13 +52,14 @@ export const TrainingCourseAddScreen = (): JSX.Element => {
       </div>
       <div className={blockStyles.block}>
         <h1 className={titleStyles.lg}>Создать тренировочный курс</h1>
-        <FormWrapper onSubmit={onSubmitHandler}>
+        <FormWrapper onSubmit={handleSubmit(onSuccessHandler, onFailHandler)}>
           <div className={formStyles.row}>
             <InputText
               type="text"
               placeholder="Введите название курса"
-              ref={nameRef}
               name="name"
+              register={register}
+              error={errors.name}
             />
           </div>
           <div className={formStyles.row}>
