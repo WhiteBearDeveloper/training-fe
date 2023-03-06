@@ -27,7 +27,7 @@ const Component = observer((): JSX.Element | null => {
       {profile && (
         <div className={topLineStyles.line}>
           <div className={topLineStyles.buttons}>
-            <NavLink to="/training-course/add">
+            <NavLink to="/training-courses/add">
               <Button text="Создать курс" className={topLineStyles.button} />
             </NavLink>
           </div>

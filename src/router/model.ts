@@ -11,12 +11,12 @@ export const routes: RouteItem[] = [
     component: MainScreen,
   },
   {
-    route: "/training-course/add",
+    route: "/training-courses/add",
     component: TrainingCourseAddScreen,
     guards: ["isAuth"],
   },
   {
-    route: "/training-course/:id",
+    route: "/training-courses/:id",
     component: TrainingCourseDetailScreen,
   },
 ];

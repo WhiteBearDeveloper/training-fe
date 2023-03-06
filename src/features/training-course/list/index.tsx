@@ -17,7 +17,7 @@ const Component = ({ data }: Props): JSX.Element => {
           {data?.map((item) => {
             return (
               <NavLink
-                to={`training-course/${item.id}`}
+                to={`training-courses/${item.id}`}
                 className={classNames(styles.block)}
                 key={`training-list-${item.id}`}
                 state={{ ...item }}
