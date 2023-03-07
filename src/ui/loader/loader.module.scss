@@ -1,22 +1,5 @@
 @import "@styles/abstracts";
 
-@mixin pulse-pseudo {
-  $position: -20px;
-  animation: pulsate 1.5s linear infinite;
-  border: 1px solid $color;
-  border-radius: 50%;
-  bottom: $position;
-
-  content: "";
-  display: block;
-  left: $position;
-  opacity: 0;
-  position: absolute;
-  right: $position;
-  top: $position;
-  z-index: 20;
-}
-
 .icon {
   $size: 80px;
   $color: $secondary-color;
@@ -32,6 +15,23 @@
   position: relative;
   text-transform: uppercase;
   width: $size;
+
+  @mixin pulse-pseudo {
+    $position: -20px;
+    animation: pulsate 1.5s linear infinite;
+    border: 1px solid $color;
+    border-radius: 50%;
+    bottom: $position;
+
+    content: "";
+    display: block;
+    left: $position;
+    opacity: 0;
+    position: absolute;
+    right: $position;
+    top: $position;
+    z-index: 20;
+  }
 
   &::before,
   &::after {
