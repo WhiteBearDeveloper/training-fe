@@ -1,5 +1,5 @@
 import React from "react";
-import { Notifications } from "@ui";
+import { Loader, Notifications } from "@ui";
 import "./default-public.scss";
 import styles from "./default-public.module.scss";
 import grid from "@styles/modules/abstracts/grid.module.scss";
@@ -32,6 +32,7 @@ export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
   return (
     <div className={styles.wrapper}>
       <Notifications />
+      <Loader />
       <header className={classNames(styles.header, grid.root)}>
         <div className={classNames(grid.container, styles["header-inner"])}>
           {getLogoComponent(<>Workout</>)}
