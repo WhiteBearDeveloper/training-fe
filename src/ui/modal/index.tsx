@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./modal.module.scss";
+import overlayStyles from "@styles/modules/abstracts/overlay.module.scss";
 import ReactModal from "react-modal";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
 import classNames from "classnames";
@@ -19,13 +20,15 @@ export const Modal: React.FC<Props> = ({
   ...props
 }): JSX.Element => {
   const [overlayClassName, setOverlayCLassName] = useState<string>(
-    styles.overlay,
+    overlayStyles.overlay,
   );
   const [overlayRef, setOverlayRef] = useState<HTMLDivElement>();
 
   const afterOpen = (): void => {
     disablePageScroll();
-    setOverlayCLassName(classNames(styles.overlay, styles["overlay-show"]));
+    setOverlayCLassName(
+      classNames(overlayStyles.overlay, overlayStyles["overlay-show"]),
+    );
   };
 
   const afterClose = (): void => {
@@ -34,7 +37,7 @@ export const Modal: React.FC<Props> = ({
   };
 
   const onCloseHandler = (): void => {
-    setOverlayCLassName(styles.overlay);
+    setOverlayCLassName(overlayStyles.overlay);
     overlayRef?.addEventListener("transitionend", onClose, false);
   };
   return (
