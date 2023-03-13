@@ -32,8 +32,12 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
       },
       type: authType,
     })
-      .then((data) => closeModal())
-      .catch(() => console.error());
+      .then((isSuccess) => {
+        isSuccess && closeModal();
+      })
+      .catch(() => {
+        console.error();
+      });
   };
 
   const onFailHandler = (errors: FieldErrors): void => {

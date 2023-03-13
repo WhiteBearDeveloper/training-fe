@@ -26,7 +26,7 @@ const getAuthEndpoint = (type: AuthTypes): string => {
 export const setAuthService = async ({
   payload,
   type,
-}: SetAuthService): Promise<void> => {
+}: SetAuthService): Promise<boolean> => {
   try {
     const response = await commonApiService<AuthAnswer, AuthProps>({
       url: getAuthEndpoint(type),
@@ -44,7 +44,9 @@ export const setAuthService = async ({
           : "Вы успешно авторизованы",
       type: "success",
     });
+    return true;
   } catch (e) {
     console.error("Ошибка авторизации");
+    return false;
   }
 };
