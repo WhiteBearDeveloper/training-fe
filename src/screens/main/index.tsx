@@ -38,7 +38,7 @@ const Component = observer((): JSX.Element | null => {
         <h1 className={titleStyles.lg}>Тренировочные курсы</h1>
         <TrainingCoursesList data={trainingCourse} />
       </section>
-      {myTrainingCourse?.length && (
+      {!!myTrainingCourse?.length && (
         <section className={blockClass}>
           <h1 className={titleStyles.lg}>Мои тренировочные курсы</h1>
           <TrainingCoursesList data={myTrainingCourse} />
