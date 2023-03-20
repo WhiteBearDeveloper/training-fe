@@ -7,7 +7,8 @@ import { Button } from "@ui";
 import { getTrainingCourseByIdService } from "@api/services/training-courses";
 import { useGoBackHook } from "@utils/hooks/navigate.hook";
 import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/logic/helpers/strings.helper";
-import { TrainingCourseModel } from "@appTypes/training-course";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
+
 export const TrainingCourseDetailScreen = (): JSX.Element | null => {
   const [training, setTraining] = useState<TrainingCourseModel>();
   const { id } = useParams<{ id?: string }>();

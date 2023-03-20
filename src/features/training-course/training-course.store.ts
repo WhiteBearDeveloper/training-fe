@@ -2,7 +2,7 @@ import { StateClassCommon } from "@store/types";
 import { makeAutoObservable, runInAction } from "mobx";
 import { $profileStore } from "@store/profile";
 import { getTrainingCourseService } from "@api/services/training-courses";
-import { TrainingCourseModel } from "@appTypes/training-course";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 
 export class TrainingCourse implements StateClassCommon {
   trainingCourse: TrainingCourseModel[] | null = null;

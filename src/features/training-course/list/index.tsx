@@ -3,7 +3,7 @@ import classNames from "classnames";
 import styles from "./list.module.scss";
 import { NavLink } from "react-router-dom";
 import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/logic/helpers/strings.helper";
-import { TrainingCourseModel } from "@appTypes/training-course";
+import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 
 interface Props {
   data: TrainingCourseModel[];

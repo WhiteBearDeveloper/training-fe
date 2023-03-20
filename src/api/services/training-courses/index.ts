@@ -1,9 +1,11 @@
-import { TrainingCourseModel } from "@appTypes/training-course";
 import { commonApiService } from "../common";
 import { getTrainingCoursesEndpoint } from "@api/endpoints/training-course";
 import { $notificationsStore } from "@store/notifications";
 import { WithId } from "@whitebeardeveloper/training-logic/logic/types/common.types";
-import { TrainingCourseProps } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
+import {
+  TrainingCourseModel,
+  TrainingCourseProps,
+} from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 import { AxiosError } from "axios";
 
 interface Props {
