@@ -2674,9 +2674,9 @@
     "@xtuc/long" "4.2.2"
 
 "@whitebeardeveloper/training-logic@^1.0.20":
-  version "1.0.24"
-  resolved "https://npm.pkg.github.com/download/@whitebeardeveloper/training-logic/1.0.24/8818c20cbeaf70438a1690d40138f13c92cb8b44#8818c20cbeaf70438a1690d40138f13c92cb8b44"
-  integrity sha512-tPJ6300MLaruw8Af36H61RVRBiKdrqM4iWMd1EG4TNwQs6wh8lu7ct9YvD51L4CKt8fdNZyrIFBFqM27q85dmQ==
+  version "1.0.25"
+  resolved "https://npm.pkg.github.com/download/@whitebeardeveloper/training-logic/1.0.25/0e87166632ff79608d895d222489305f64779fd6#0e87166632ff79608d895d222489305f64779fd6"
+  integrity sha512-g6VsGD9Xr6gD87jUuw5okkBqxQe/uedqAPAcTN6tO7kYmVENr4E6kgH7Aekgvi0DcaNvhuqukyUgFn9OcTRmdw==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
