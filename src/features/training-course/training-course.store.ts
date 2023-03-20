@@ -1,8 +1,8 @@
 import { StateClassCommon } from "@store/types";
 import { makeAutoObservable, runInAction } from "mobx";
-import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 import { $profileStore } from "@store/profile";
 import { getTrainingCourseService } from "@api/services/training-courses";
+import { TrainingCourseModel } from "@appTypes/training-course";
 
 export class TrainingCourse implements StateClassCommon {
   trainingCourse: TrainingCourseModel[] | null = null;
@@ -14,7 +14,7 @@ export class TrainingCourse implements StateClassCommon {
   get myTrainingCourse(): TrainingCourseModel[] | null {
     const { profile } = $profileStore;
     return profile && this.trainingCourse?.length
-      ? this.trainingCourse.filter((item) => item.profileId === profile?.id)
+      ? this.trainingCourse.filter((item) => item.control?.isEditable)
       : null;
   }
 
