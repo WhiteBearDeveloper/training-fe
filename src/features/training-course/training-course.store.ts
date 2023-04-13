@@ -14,7 +14,7 @@ export class TrainingCourse implements StateClassCommon {
   get myTrainingCourse(): TrainingCourseModel[] | null {
     const { profile } = $profileStore;
     return profile && this.trainingCourse?.length
-      ? this.trainingCourse.filter((item) => item.control?.isEditable)
+      ? this.trainingCourse.filter((item) => item.authorId === profile.id)
       : null;
   }
 
