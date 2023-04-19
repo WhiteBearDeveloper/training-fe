@@ -23,11 +23,18 @@ export const TrainingCourseDetailScreen = (): JSX.Element | null => {
   }, []);
 
   const trainingName: string = state?.name ?? training?.name ?? "";
-
   return training ?? state ? (
     <>
       <div className={topLineStyles.line}>
         <div className={topLineStyles.buttons}>
+          {training?.control?.isEditable && (
+            <Button
+              text="Редактировать"
+              className={topLineStyles.button}
+              onClick={goBackHandler}
+              buttonStyle="outline"
+            />
+          )}
           <Button
             text="Назад"
             className={topLineStyles.button}
