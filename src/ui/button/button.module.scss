@@ -17,14 +17,32 @@
     padding-right: $padding;
   }
 
-  &Main {
-    @include transition(background-position);
-    background-image: $purple-pink-gradient;
-    background-size: 120%;
+  &-main {
     color: $color-white;
 
-    &:hover {
-      background-position: 100%;
+    &.fill {
+      @include transition(background-position);
+      background-image: $purple-pink-gradient;
+      background-size: 120%;
+
+      &:hover {
+        background-position: 100%;
+      }
+    }
+
+    &.outline {
+      $color: $main-color;
+      $hover-color: $secondary-color;
+
+      @include transition(border-color, color);
+      border: 1px solid;
+      border-color: $color;
+      color: $color;
+
+      &:hover {
+        border-color: $hover-color;
+        color: $hover-color;
+      }
     }
   }
 }
