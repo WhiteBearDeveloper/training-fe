@@ -6,10 +6,6 @@
   box-shadow: $box-shadow-main;
   padding: $grid-gap-small;
 
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
-
   @include media-breakpoint-up(xxs) {
     padding: $grid-gap;
 
@@ -19,5 +15,9 @@
   }
   @include media-breakpoint-up(lg) {
     padding: 20px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
   }
 }

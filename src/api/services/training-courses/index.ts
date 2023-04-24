@@ -34,6 +34,31 @@ export const addTrainingCourseService = async ({
   }
 };
 
+export const updateTrainingCourseService = async ({
+  id,
+  payload,
+}: Props & WithId): Promise<TrainingCourseModel | undefined> => {
+  try {
+    const url = `${getTrainingCoursesEndpoint()}/${id}`;
+    const finalPayload: TrainingCourseProps & WithId = { ...payload, id };
+    const response = await commonApiService<
+      TrainingCourseModel,
+      TrainingCourseProps
+    >({
+      url,
+      method: "PUT",
+      payload: finalPayload,
+    });
+    $notificationsStore.addNotification({
+      text: "Тренировочный курс успешно обновлён!",
+      type: "success",
+    });
+    return response.data;
+  } catch (e) {
+    console.error("Ошибка обновления тренировочного курса");
+  }
+};
+
 export const getTrainingCourseService = async (): Promise<
   TrainingCourseModel[] | undefined
 > => {
