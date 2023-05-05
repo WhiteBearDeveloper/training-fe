@@ -6,7 +6,6 @@ import {
   TrainingCourseModel,
   TrainingCourseProps,
 } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
-import { AxiosError } from "axios";
 
 interface Props {
   payload: TrainingCourseProps;
@@ -69,16 +68,7 @@ export const getTrainingCourseService = async (): Promise<
     });
     return response.data;
   } catch (e) {
-    if (e instanceof AxiosError) {
-      if (e.code === "ERR_NETWORK") {
-        $notificationsStore.addNotification({
-          text: "Ошибка соединения с интернетом",
-          type: "error",
-        });
-      } else {
-        console.error("Ошибка получения списка тренировок");
-      }
-    }
+    console.error("Ошибка получения списка тренировок");
   }
 };
 
