@@ -1,21 +1,22 @@
 import { StateClassCommon } from "@store/types";
+import { $SERVER_ERRORS } from "@utils/constants/errors";
 import { makeAutoObservable } from "mobx";
 
 export class SpecialScreens implements StateClassCommon {
-  lastScreen: string = "";
+  lastScreen: $SERVER_ERRORS | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  showSpecialScreen(screen: string): void {
+  showSpecialScreen(screen: $SERVER_ERRORS): void {
     if (this.lastScreen !== screen) {
       this.lastScreen = screen;
     }
   }
 
   reset(): void {
-    this.lastScreen = "";
+    this.lastScreen = null;
   }
 }
 
