@@ -2,6 +2,7 @@ import { apiController } from "@api/controller";
 import { ApiServiceType } from "@api/types";
 import { $loaderStore } from "@store/loader";
 import { $specialScreensStore } from "@store/special-screens";
+import { $SERVER_ERRORS } from "@utils/constants/errors";
 import { AxiosError, AxiosResponse } from "axios";
 
 export const commonApiService = async <T = any, P = any>(
@@ -11,10 +12,17 @@ export const commonApiService = async <T = any, P = any>(
   return await apiController<T, P>({
     ...props,
   })
-    .then()
+    .then((data) => {
+      $specialScreensStore.reset();
+      return data;
+    })
     .catch((error: AxiosError) => {
-      if (error.code === "ERR_NETWORK") {
-        $specialScreensStore.showSpecialScreen("ERR_NETWORK");
+      if (error.code && error.code in $SERVER_ERRORS) {
+        $specialScreensStore.showSpecialScreen(
+          error.code as unknown as $SERVER_ERRORS,
+        );
+      } else {
+        $specialScreensStore.reset();
       }
       throw new Error(error.message);
     })
