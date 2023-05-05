@@ -4,7 +4,7 @@ import { routes } from "./model";
 import { DefaultPublicTemplate } from "@templates/";
 import { RouteItem, Template } from "./types";
 import { NotFoundScreen } from "@screens";
-import { checkGuards } from "./helpers";
+import { checkGuards, checkSpecialScreens } from "./helpers";
 import { observer } from "mobx-react-lite";
 
 const getTemplate = (
@@ -22,12 +22,17 @@ const getTemplate = (
 };
 
 const createRoutesList = (routes: RouteItem[], path?: string): JSX.Element => {
+  const specialScreen = checkSpecialScreens();
   return (
     <>
       {routes.map((item) => {
-        const Component: React.FC = item.guards?.length
-          ? checkGuards(item)
-          : item.component;
+        let Component: React.FC;
+        if (specialScreen) {
+          Component = specialScreen;
+        } else {
+          Component = item.guards?.length ? checkGuards(item) : item.component;
+        }
+
         return (
           <React.Fragment key={`${path ?? ""}${item.route}`}>
             {item.children && createRoutesList(item.children, `${item.route}`)}

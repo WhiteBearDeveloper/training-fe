@@ -1,6 +1,8 @@
-import { NoAccessScreen } from "@screens";
+import { ErrorNetworkScreen, NoAccessScreen } from "@screens";
 import { $userStore } from "@store/user";
 import { RouteItem } from "./types";
+import { $specialScreensStore } from "@store/special-screens";
+import { $SERVER_ERRORS } from "@utils/constants/errors";
 
 export const checkAuth = (): React.FC | false => {
   const isAuth: boolean | null = $userStore.isAuth;
@@ -21,4 +23,13 @@ export const checkGuards = (item: RouteItem): React.FC => {
     }
   }
   return item.component;
+};
+
+export const checkSpecialScreens = (): React.FC | false => {
+  switch ($specialScreensStore.lastScreen) {
+    case $SERVER_ERRORS.ERR_NETWORK:
+      return ErrorNetworkScreen;
+    default:
+      return false;
+  }
 };
