@@ -11,4 +11,4 @@ export interface RouteItem {
 
 export type Template = "defaultPublic";
 
-export type Guards = "isAuth" | "testGuard";
+export type Guards = "isAuth";
