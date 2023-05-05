@@ -1,0 +1,3 @@
+export enum $SERVER_ERRORS {
+  ERR_NETWORK = "ERR_NETWORK",
+}
