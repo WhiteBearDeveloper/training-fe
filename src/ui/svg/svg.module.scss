@@ -1,0 +1,24 @@
+.svg {
+  display: inline-block;
+  position: relative;
+
+  > svg {
+    display: inline-block;
+    fill: currentColor;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &-profile {
+    width: 20px;
+
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: (23/20) * 100%;
+    }
+  }
+}

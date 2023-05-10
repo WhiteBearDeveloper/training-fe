@@ -4,3 +4,4 @@ export { CloseIcon } from "./close-icon";
 export * from "./form";
 export { Button } from "./button";
 export { Loader } from "./loader";
+export { SvgIcon } from "./svg";
