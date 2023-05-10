@@ -11,3 +11,23 @@
 .logout {
   @include adaptive-default-gap(false, "margin-left");
 }
+
+.block {
+  @include flex();
+}
+
+.avatar {
+  $size: 30px;
+  align-items: flex-end;
+  background-color: $main-color;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: $color-white;
+
+  display: flex;
+  height: $size;
+  justify-content: center;
+  margin-right: 10px;
+  overflow: hidden;
+  width: $size;
+}
