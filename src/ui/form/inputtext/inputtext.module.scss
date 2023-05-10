@@ -1,0 +1,31 @@
+@import "@styles/abstracts";
+
+$icon-size: 20px;
+$password-button-padding-x: 5px;
+
+.password {
+  padding-right: $icon-size + $password-button-padding-x * 2;
+  position: relative;
+}
+
+.button {
+  @include flex();
+  bottom: 0;
+  cursor: pointer;
+  padding: 0 $password-button-padding-x;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.icon {
+  @include transition(color);
+  color: $color-gray;
+  width: $icon-size !important;
+
+  .button:hover &,
+  &.selected {
+    color: $main-color;
+  }
+}
