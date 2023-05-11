@@ -11,8 +11,8 @@ export const Notifications = observer((): JSX.Element => {
     $notificationsStore.notifications;
   return (
     <div className={styles.wrapper}>
-      {!(notifications == null) &&
-        !(notifications.length === 0) &&
+      {notifications !== null &&
+        notifications.length !== 0 &&
         notifications.map((item: NotificationStore) => {
           const className = classNames(
             styles.item,
