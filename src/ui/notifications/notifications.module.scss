@@ -1,5 +1,13 @@
 @import "@styles/abstracts";
 
+@mixin item-background($color) {
+  background-color: $color;
+
+  &:hover {
+    background-color: darken($color, 15);
+  }
+}
+
 .wrapper {
   max-width: 250px;
   position: absolute;
@@ -73,13 +81,5 @@
 
   to {
     transform: translateX(-100%);
-  }
-}
-
-@mixin item-background($color) {
-  background-color: $color;
-
-  &:hover {
-    background-color: darken($color, 15);
   }
 }
