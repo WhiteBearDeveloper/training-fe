@@ -10,7 +10,6 @@ export class User implements StateClassCommon {
     makeAutoObservable(this);
 
     if (getAuthToken() !== null) {
-      this.activateAuthorizationStatus();
       this.getProfile();
     } else {
       this.deactivateAuthorizationStatus();
@@ -18,7 +17,14 @@ export class User implements StateClassCommon {
   }
 
   private getProfile(): void {
-    $profileStore.update().catch((err) => console.error(err));
+    $profileStore
+      .update()
+      .then((data) => {
+        if (data) {
+          this.activateAuthorizationStatus();
+        }
+      })
+      .catch((err) => console.error(err));
   }
 
   activateAuthorizationStatus(): void {
