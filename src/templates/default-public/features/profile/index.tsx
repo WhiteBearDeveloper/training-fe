@@ -21,6 +21,7 @@ export const Profile = observer((): JSX.Element => {
   const onLogoutHandler = (): void => {
     resetRegisteredStates();
     clearAuthStorage();
+    window.location.reload();
   };
 
   const blockClass = classNames(styles.block, linkStyles["link-base"]);
