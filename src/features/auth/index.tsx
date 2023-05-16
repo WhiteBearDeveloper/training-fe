@@ -12,6 +12,8 @@ import { AuthProps } from "@whitebeardeveloper/training-logic/logic/types/auth.t
 import { useForm } from "@api/hooks/form.hook";
 import { FieldErrors } from "react-hook-form";
 import { getSchema } from "./schema";
+import { $notificationsStore } from "@store/notifications";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   closeModal: () => void;
@@ -19,6 +21,7 @@ interface Props {
 }
 
 export const Auth = ({ closeModal, type }: Props): JSX.Element => {
+  const navigate = useNavigate();
   const [authType, setAuthType] = useState<AuthTypes>(type ?? "login");
 
   const schema = useMemo(() => getSchema(authType), [authType]);
@@ -33,7 +36,17 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
       type: authType,
     })
       .then((isSuccess) => {
-        isSuccess && closeModal();
+        if (isSuccess) {
+          closeModal();
+          navigate("/");
+          $notificationsStore.addNotification({
+            text:
+              type === "registration"
+                ? "Регистрация успешно завершена"
+                : "Вы успешно авторизованы",
+            type: "success",
+          });
+        }
       })
       .catch(() => {
         console.error();
