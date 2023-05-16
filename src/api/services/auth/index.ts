@@ -3,7 +3,6 @@ import { commonApiService } from "../common";
 import { setAuthEmail, setAuthToken } from "@services/auth";
 import { $userStore } from "@store/user";
 import { AuthTypes } from "./types";
-import { $notificationsStore } from "@store/notifications";
 import { $profileStore } from "@store/profile";
 import {
   AuthAnswer,
@@ -37,13 +36,6 @@ export const setAuthService = async ({
     setAuthEmail(response.data.email);
     $userStore.activateAuthorizationStatus();
     await $profileStore.update();
-    $notificationsStore.addNotification({
-      text:
-        type === "registration"
-          ? "Регистрация успешно завершена"
-          : "Вы успешно авторизованы",
-      type: "success",
-    });
     return true;
   } catch (e) {
     console.error("Ошибка авторизации");
