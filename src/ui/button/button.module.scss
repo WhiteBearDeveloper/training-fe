@@ -45,6 +45,34 @@
       }
     }
   }
+  &-indianred {
+    color: $color-white;
+
+    &.fill {
+      $background-color: $color-indianred;
+
+      @include transition(background-color);
+      background-color: $color-indianred;
+
+      &:hover {
+        background-color: darken($background-color, 15);
+      }
+    }
+
+    &.outline {
+      $color: $color-indianred;      
+
+      @include transition(border-color, color);
+      border: 1px solid;
+      border-color: $color;
+      color: $color;
+
+      &:hover {
+        border-color: darken($color, 15);
+        color: darken($color, 15);
+      }
+    }
+  }
 }
 
 .button {

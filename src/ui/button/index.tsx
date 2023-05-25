@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from "react";
 import styles from "./button.module.scss";
 import classNames from "classnames";
 
-type Themes = "main";
+type Themes = "main" | "indianred";
 type Styles = "fill" | "outline";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
