@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import blockStyles from "@styles/modules/abstracts/block.module.scss";
 import titleStyles from "@styles/modules/abstracts/title.module.scss";
-import topLineStyles from "@styles/modules/abstracts/top-line.module.scss";
-import { Button } from "@ui";
+import { Button, TopLineElements } from "@ui";
 import { getTrainingCourseByIdService } from "@api/services/training-courses";
 import { useGoBackHook } from "@utils/hooks/navigate.hook";
 import { capitalizeFirstLetter } from "@whitebeardeveloper/training-logic/logic/helpers/strings.helper";
 import { TrainingCourseModel } from "@whitebeardeveloper/training-logic/logic/types/training-course.types";
 import { EditTrainingCourse } from "@features/training-course/forms/edit";
+import type { TopLineElementsInterface } from "@ui";
 
 export const TrainingCourseDetailScreen = (): JSX.Element | null => {
   const [training, setTraining] = useState<TrainingCourseModel>();
@@ -24,28 +24,43 @@ export const TrainingCourseDetailScreen = (): JSX.Element | null => {
       .catch((error) => console.log("error :>> ", error));
   }, []);
 
-  const trainingName: string = training?.name ?? state?.name ?? "";
-  return training ?? state ? (
-    <>
-      <div className={topLineStyles.line}>
-        <div className={topLineStyles.buttons}>
-          {training?.control?.isEditable && (
+  const topLineButtons: TopLineElementsInterface = {
+    leftSide: [
+      ...(training?.control?.isEditable
+        ? [
+            <Button
+              text="Удалить"
+              theme="indianred"
+              key="training-course-detail-delete"
+            />,
+          ]
+        : []),
+    ],
+    rightSide: [
+      ...(training?.control?.isEditable
+        ? [
             <Button
               text={
                 isShowEditForm ? "Завершить редактирование" : "Редактировать"
               }
-              className={topLineStyles.button}
               onClick={() => setShowEditFormStatus((prev) => !prev)}
               buttonStyle="outline"
-            />
-          )}
-          <Button
-            text="Назад"
-            className={topLineStyles.button}
-            onClick={goBackHandler}
-          />
-        </div>
-      </div>
+              key="training-course-detail-edit"
+            />,
+          ]
+        : []),
+      <Button
+        text="Назад"
+        onClick={goBackHandler}
+        key="training-course-detail-back"
+      />,
+    ],
+  };
+
+  const trainingName: string = training?.name ?? state?.name ?? "";
+  return training ?? state ? (
+    <>
+      <TopLineElements {...topLineButtons} />
       {!!trainingName && (
         <>
           <div className={blockStyles.block}>

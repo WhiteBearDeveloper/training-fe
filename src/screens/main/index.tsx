@@ -6,8 +6,7 @@ import titleStyles from "@styles/modules/abstracts/title.module.scss";
 import { observer } from "mobx-react-lite";
 import { $trainingCourseStore } from "@features/training-course/training-course.store";
 import classNames from "classnames";
-import topLineStyles from "@styles/modules/abstracts/top-line.module.scss";
-import { Button } from "@ui";
+import { Button, TopLineElements, TopLineElementsInterface } from "@ui";
 import { NavLink } from "react-router-dom";
 import { $profileStore } from "@store/profile";
 
@@ -22,17 +21,17 @@ const Component = observer((): JSX.Element | null => {
 
   const blockClass = classNames(blockStyles.block, styles.block);
 
+  const topLineButtons: TopLineElementsInterface = {
+    rightSide: [
+      <NavLink to="/training-courses/add" key="main-page-create">
+        <Button text="Создать курс" />
+      </NavLink>,
+    ],
+  };
+
   return trainingCourse?.length ? (
     <>
-      {profile && (
-        <div className={topLineStyles.line}>
-          <div className={topLineStyles.buttons}>
-            <NavLink to="/training-courses/add">
-              <Button text="Создать курс" className={topLineStyles.button} />
-            </NavLink>
-          </div>
-        </div>
-      )}
+      {profile && <TopLineElements {...topLineButtons} />}
 
       <section className={blockClass}>
         <h1 className={titleStyles.lg}>Тренировочные курсы</h1>
