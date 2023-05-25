@@ -1,0 +1,21 @@
+@import "@styles/abstracts";
+
+.line {
+  @include adaptive-default-gap(false, margin-bottom);
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-side {
+  @include flex();
+}
+
+.right-side {
+  @include flex();
+  margin-left: auto;
+}
+
+.element:not(:last-child) {
+  @include adaptive-default-gap(false, margin-right);
+}
