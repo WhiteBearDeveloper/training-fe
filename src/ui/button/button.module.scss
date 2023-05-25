@@ -45,6 +45,7 @@
       }
     }
   }
+
   &-indianred {
     color: $color-white;
 
@@ -60,7 +61,7 @@
     }
 
     &.outline {
-      $color: $color-indianred;      
+      $color: $color-indianred;
 
       @include transition(border-color, color);
       border: 1px solid;
