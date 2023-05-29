@@ -58,6 +58,26 @@ export const updateTrainingCourseService = async ({
   }
 };
 
+export const deleteTrainingCourseService = async (
+  id: number,
+  name: string,
+): Promise<number | undefined> => {
+  try {
+    const url = `${getTrainingCoursesEndpoint()}/${id}`;
+    const response = await commonApiService<number, WithId>({
+      url,
+      method: "DELETE",
+    });
+    $notificationsStore.addNotification({
+      text: `Тренировочный курс ${name} успешно удалён!`,
+      type: "success",
+    });
+    return response.data;
+  } catch (e) {
+    console.error("Ошибка удаления тренировочного курса");
+  }
+};
+
 export const getTrainingCourseService = async (): Promise<
   TrainingCourseModel[] | undefined
 > => {
