@@ -161,7 +161,7 @@
     "@types/react-modal": "^3.13.1",
     "@types/scroll-lock": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@whitebeardeveloper/training-logic": "^1.0.20",
+    "@whitebeardeveloper/training-logic": "1.0.27",
     "commitizen": "^4.2.6",
     "cz-conventional-changelog": "^3.3.0",
     "eslint-config-prettier": "^8.5.0",
