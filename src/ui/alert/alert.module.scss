@@ -1,3 +1,13 @@
+@import "@styles/abstracts";
+
+.content {
+  margin-bottom: 10px;
+
+  @include media-breakpoint-up(xxs) {
+    margin-bottom: 20px;
+  }
+}
+
 .toolbar {
   display: flex;
   justify-content: center;

@@ -15,7 +15,7 @@ export const Alert = ({
 }: Props): React.ReactElement => {
   return (
     <Modal size="base" {...props}>
-      {children}
+      <div className={styles.content}>{children}</div>
       <div className={styles.toolbar}>
         <Button
           text="Продолжить"
