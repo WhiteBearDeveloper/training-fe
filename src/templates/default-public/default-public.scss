@@ -4,7 +4,7 @@
 html {
   font-family: $font-main;
   font-size: 12px;
-  line-height: 1;
+  line-height: 1.2;
 
   @include media-breakpoint-up(xs) {
     font-size: 14px;
