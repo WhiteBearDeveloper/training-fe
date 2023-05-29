@@ -42,11 +42,19 @@
   //     }
   //   }
 }
-.size-base {
-  width: 600px;
+
+@mixin size-common() {
   max-width: 100%;
 }
+
+.size-base {
+  @include size-common();
+  width: 600px;
+}
+
 .size-short {
+  @include size-common();
+  width: 300px;
 }
 
 .close-icon {
