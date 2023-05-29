@@ -6,17 +6,20 @@ import { disablePageScroll, enablePageScroll } from "scroll-lock";
 import classNames from "classnames";
 import { CloseIcon } from "@ui";
 
-interface Props extends ReactModal.Props {
+type ModalSizes = "base" | "short";
+export interface ModalProps extends ReactModal.Props {
   className?: string;
   onClose: () => void;
   isNotClosed?: boolean;
+  size?: ModalSizes;
 }
 
-export const Modal: React.FC<Props> = ({
+export const Modal: React.FC<ModalProps> = ({
   children,
   onClose,
   className,
   isNotClosed = false,
+  size,
   ...props
 }): JSX.Element => {
   const [overlayClassName, setOverlayCLassName] = useState<string>(
@@ -40,13 +43,30 @@ export const Modal: React.FC<Props> = ({
     setOverlayCLassName(overlayStyles.overlay);
     overlayRef?.addEventListener("transitionend", onClose, false);
   };
+
+  const getModalSizeClass: () => string = () => {
+    switch (size) {
+      case "base":
+        return styles["size-base"];
+      case "short":
+        return styles["size-short"];
+      default:
+        return "";
+    }
+  };
+
   return (
     <ReactModal
       ariaHideApp={false}
       overlayClassName={overlayClassName}
       onAfterOpen={afterOpen}
       onAfterClose={afterClose}
-      className={classNames(styles.empty, styles.wrapper, className)}
+      className={classNames(
+        styles.empty,
+        styles.wrapper,
+        getModalSizeClass(),
+        className,
+      )}
       portalClassName={styles.empty}
       onRequestClose={onCloseHandler}
       overlayRef={(node) => setOverlayRef(node)}

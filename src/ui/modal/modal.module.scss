@@ -42,6 +42,12 @@
   //     }
   //   }
 }
+.size-base {
+  width: 600px;
+  max-width: 100%;
+}
+.size-short {
+}
 
 .close-icon {
   @include adaptive-default-gap(false, "top", "right");
