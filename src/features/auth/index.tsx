@@ -15,13 +15,14 @@ import { getSchema } from "./schema";
 import { $notificationsStore } from "@store/notifications";
 import { useNavigate } from "react-router-dom";
 import { $loaderStore } from "@store/loader";
+import { observer } from "mobx-react-lite";
 
 interface Props {
   closeModal: () => void;
   type?: AuthTypes;
 }
 
-export const Auth = ({ closeModal, type }: Props): JSX.Element => {
+export const Auth = observer(({ closeModal, type }: Props): JSX.Element => {
   const navigate = useNavigate();
   const [authType, setAuthType] = useState<AuthTypes>(type ?? "login");
 
@@ -108,7 +109,7 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
       </FormWrapper>
     </>
   );
-};
+});
 
 interface LinkProps {
   type: AuthTypes;
