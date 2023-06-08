@@ -14,6 +14,7 @@ import { FieldErrors } from "react-hook-form";
 import { getSchema } from "./schema";
 import { $notificationsStore } from "@store/notifications";
 import { useNavigate } from "react-router-dom";
+import { $loaderStore } from "@store/loader";
 
 interface Props {
   closeModal: () => void;
@@ -61,6 +62,8 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
     schema,
   });
 
+  const isDisabled = $loaderStore.loader;
+
   return (
     <>
       <h1 className={titleStyles.lg}>
@@ -86,7 +89,7 @@ export const Auth = ({ closeModal, type }: Props): JSX.Element => {
           />
         </div>
         <div className={classNames(formStyles.row, styles.footer)}>
-          <Button type="submit" text="Отправить" />
+          <Button type="submit" text="Отправить" disabled={isDisabled} />
           {authType === "login" && (
             <Link
               type="registration"
