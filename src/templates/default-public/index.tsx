@@ -32,6 +32,7 @@ export const DefaultPublicTemplate: React.FC<Props> = ({ children }) => {
   return (
     <div className={styles.wrapper}>
       <Notifications />
+      <div data-js="template" />
       <Loader />
       <header className={classNames(styles.header, grid.root)}>
         <div className={classNames(grid.container, styles["header-inner"])}>
