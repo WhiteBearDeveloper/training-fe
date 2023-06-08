@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import axios, { Method } from "axios";
 import { apiController } from "@api/controller";
-import { ControllerHookInterface } from "./types";
+
+export interface ControllerHookInterface<T> {
+  data: T | null;
+  error: string;
+  loaded: boolean;
+}
 
 export const useApiController = <T, B = {}>(
   url: string,
