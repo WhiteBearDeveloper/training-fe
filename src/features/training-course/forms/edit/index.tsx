@@ -18,6 +18,8 @@ import {
 import { schema } from "./schema";
 import { useNavigate } from "react-router-dom";
 import { WithId } from "@whitebeardeveloper/training-logic/logic/types/common.types";
+import { $loaderStore } from "@store/loader";
+import { observer } from "mobx-react-lite";
 
 type FormData = yup.InferType<typeof schema>;
 interface Props {
@@ -25,80 +27,81 @@ interface Props {
   setTrainingCourse?: (data: TrainingCourseModel) => void;
 }
 
-export const EditTrainingCourse = ({
-  data,
-  setTrainingCourse,
-}: Props): JSX.Element => {
-  const navigate = useNavigate();
+export const EditTrainingCourse = observer(
+  ({ data, setTrainingCourse }: Props): JSX.Element => {
+    const navigate = useNavigate();
 
-  const onAfterSuccessHandler = ({ id }: WithId): void => {
-    $trainingCourseStore.update().catch((errors) => console.error(errors));
-  };
+    const onAfterSuccessHandler = ({ id }: WithId): void => {
+      $trainingCourseStore.update().catch((errors) => console.error(errors));
+    };
 
-  const onSuccessHandler = (formData: FormData): void => {
-    if (!data) {
-      addTrainingCourseService({
-        payload: {
-          name: formData.name,
-        },
-      })
-        .then((returnedData) => {
-          if (returnedData?.id) {
-            navigate(`/${getTrainingCoursesEndpoint()}/${returnedData.id}`);
-            onAfterSuccessHandler({ id: returnedData.id });
-          }
+    const onSuccessHandler = (formData: FormData): void => {
+      if (!data) {
+        addTrainingCourseService({
+          payload: {
+            name: formData.name,
+          },
         })
-        .catch((error) => console.error(error));
-    } else {
-      updateTrainingCourseService({
-        id: data.id,
-        payload: {
-          name: formData.name,
-        },
-      })
-        .then((returnedData) => {
-          if (returnedData) {
-            if (setTrainingCourse) {
-              setTrainingCourse(returnedData);
+          .then((returnedData) => {
+            if (returnedData?.id) {
+              navigate(`/${getTrainingCoursesEndpoint()}/${returnedData.id}`);
+              onAfterSuccessHandler({ id: returnedData.id });
             }
-            onAfterSuccessHandler({ id: returnedData.id });
-          }
+          })
+          .catch((error) => console.error(error));
+      } else {
+        updateTrainingCourseService({
+          id: data.id,
+          payload: {
+            name: formData.name,
+          },
         })
-        .catch((error) => console.error(error));
-    }
-  };
+          .then((returnedData) => {
+            if (returnedData) {
+              if (setTrainingCourse) {
+                setTrainingCourse(returnedData);
+              }
+              onAfterSuccessHandler({ id: returnedData.id });
+            }
+          })
+          .catch((error) => console.error(error));
+      }
+    };
 
-  const onFailHandler = (errors: FieldErrors): void => {
-    console.error("errors :>> ", errors);
-  };
+    const onFailHandler = (errors: FieldErrors): void => {
+      console.error("errors :>> ", errors);
+    };
 
-  const methods = useForm<TrainingCourseProps>({
-    schema,
-    defaultValues: {
-      name: data?.name ?? "",
-    },
-  });
+    const methods = useForm<TrainingCourseProps>({
+      schema,
+      defaultValues: {
+        name: data?.name ?? "",
+      },
+    });
 
-  return (
-    <>
-      <h1 className={titleStyles.lg}>{`${
-        data ? "Редактировать" : "Создать"
-      } тренировочный курс`}</h1>
-      <FormWrapper
-        onSubmit={methods.handleSubmit(onSuccessHandler, onFailHandler)}
-      >
-        <div className={formStyles.row}>
-          <InputText
-            type="text"
-            placeholder="Введите название курса"
-            name="name"
-            methods={methods}
-          />
-        </div>
-        <div className={formStyles.row}>
-          <Button type="submit" text="Сохранить" />
-        </div>
-      </FormWrapper>
-    </>
-  );
-};
+    const isDisabled: boolean = $loaderStore.loader;
+
+    return (
+      <>
+        <h1 className={titleStyles.lg}>{`${
+          data ? "Редактировать" : "Создать"
+        } тренировочный курс`}</h1>
+        <FormWrapper
+          onSubmit={methods.handleSubmit(onSuccessHandler, onFailHandler)}
+        >
+          <div className={formStyles.row}>
+            <InputText
+              type="text"
+              placeholder="Введите название курса"
+              name="name"
+              methods={methods}
+            />
+          </div>
+          <div className={formStyles.row}>
+            <Button type="submit" text="Сохранить" disabled={isDisabled} />
+          </div>
+        </FormWrapper>
+      </>
+    );
+  },
+);
