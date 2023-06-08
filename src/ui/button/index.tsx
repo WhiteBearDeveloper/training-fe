@@ -20,7 +20,7 @@ export const Button: React.FC<Props> = ({
 }): JSX.Element => {
   const blockClassName = classNames(
     styles.block,
-    styles[`block-${theme}`],
+    props.disabled ? styles["block-disabled"] : styles[`block-${theme}`],
     buttonStyle === "fill" ? styles.fill : styles.outline,
     className,
   );
