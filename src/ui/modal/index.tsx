@@ -55,6 +55,10 @@ export const Modal: React.FC<ModalProps> = ({
     }
   };
 
+  const templateSelector: HTMLElement | null = document.querySelector(
+    '[data-js="template"]',
+  );
+
   return (
     <ReactModal
       ariaHideApp={false}
@@ -73,6 +77,9 @@ export const Modal: React.FC<ModalProps> = ({
       {...(isNotClosed && {
         shouldCloseOnEsc: false,
         shouldCloseOnOverlayClick: false,
+      })}
+      {...(templateSelector && {
+        parentSelector: () => templateSelector,
       })}
       {...props}
     >
