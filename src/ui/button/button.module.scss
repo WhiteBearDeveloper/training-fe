@@ -74,10 +74,11 @@
       }
     }
   }
+
   &-disabled {
+    @include transition(background-color, color);
     background-color: rgba($color-gray, 0.5);
     color: $color-white;
-    @include transition(background-color, color);
 
     .button {
       cursor: default;
