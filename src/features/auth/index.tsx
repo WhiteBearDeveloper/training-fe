@@ -14,8 +14,8 @@ import { FieldErrors } from "react-hook-form";
 import { getSchema } from "./schema";
 import { $notificationsStore } from "@store/notifications";
 import { useNavigate } from "react-router-dom";
-import { $loaderStore } from "@store/loader";
 import { observer } from "mobx-react-lite";
+import { useIsDisabledHook } from "@utils/hooks/is-disabled.hook";
 
 interface Props {
   closeModal: () => void;
@@ -63,7 +63,7 @@ export const Auth = observer(({ closeModal, type }: Props): JSX.Element => {
     schema,
   });
 
-  const isDisabled = $loaderStore.loader;
+  const isDisabled = useIsDisabledHook<AuthProps>(methods.formState);
 
   return (
     <>
